@@ -1,5 +1,9 @@
-# CodeIgniter 4 Application Starter
+# LearnSphere - Sistem Manajemen Perusahaan Pelatihan
 
+Use this code to start the app:
+```
+docker-compose up
+```
 ## What is CodeIgniter?
 
 CodeIgniter is a PHP full-stack web framework that is light, fast, flexible and secure.

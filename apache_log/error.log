@@ -17,3 +17,5 @@ AH00112: Warning: DocumentRoot [/var/www/html/public] does not exist
 [Wed Dec 13 19:40:05.781300 2023] [php7:error] [pid 17] [client 172.19.0.1:39990] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.1.0". You are running 7.4.33. in /var/www/html/vendor/composer/platform_check.php on line 24
 [Wed Dec 13 19:42:49.784661 2023] [php7:error] [pid 19] [client 172.19.0.1:45060] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.1.0". You are running 7.4.33. in /var/www/html/vendor/composer/platform_check.php on line 24
 [Wed Dec 13 19:50:23.492812 2023] [mpm_prefork:notice] [pid 1] AH00170: caught SIGWINCH, shutting down gracefully
+[Wed Dec 13 20:41:28.951237 2023] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.54 (Debian) PHP/7.4.33 configured -- resuming normal operations
+[Wed Dec 13 20:41:28.954940 2023] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'

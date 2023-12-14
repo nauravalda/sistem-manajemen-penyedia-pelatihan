@@ -11,9 +11,9 @@ module.exports = {
         'sans': ['Roboto', 'sans-serif'],
       },
       fontSize: {
-        'display-sm' : '0.7rem',
-        'display-md' : '0.8rem',
-        'display-lg' : '0.9rem',
+        'label-sm' : '0.7rem',
+        'label-md' : '0.75rem',
+        'label-lg' : '0.9rem',
         'body-sm' : '0.8rem',
         'body-md' : '0.9rem',
         'body-lg' : '1rem',

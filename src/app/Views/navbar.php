@@ -13,7 +13,7 @@
 
 <body>
 
-    <div class="w-20 h-screen bg-purple-400 bg-opacity-5 flex-col justify-start items-center inline-flex fixed left-0">
+    <div class="w-20 h-screen bg-fuchsia-50 flex-col justify-start items-center inline-flex fixed left-0">
         <div class="self-stretch h-20 justify-center items-center inline-flex">
             <div class="w-10 h-10 justify-center items-center flex">
                 <div class="origin-top-left rotate-[-15deg] w-8 h-8 relative">

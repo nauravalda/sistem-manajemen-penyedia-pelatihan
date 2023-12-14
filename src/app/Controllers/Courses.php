@@ -6,6 +6,6 @@ class Courses extends BaseController
 {
     public function index(): string
     {
-        return view('navbar').view('courses');
+        return view('navbar').view('courses').view('footer');
     }
 }

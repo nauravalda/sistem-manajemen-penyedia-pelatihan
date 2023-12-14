@@ -12,14 +12,12 @@
 </head>
 
 <body>
-<div class="w-full h-16 px-24 py-6 bg-white border border-stone-300 justify-between items-start inline-flex">
-  <div class="text-gray-600 text-sm font-normal leading-tight tracking-tight">© 2023 EduTrack. All rights reserved</div>
-  <div class="justify-start items-start gap-5 flex">
-    <div class="text-gray-600 text-sm font-normal leading-tight tracking-tight">Twitter</div>
-    <div class="text-gray-600 text-sm font-normal leading-tight tracking-tight">Instagram</div>
-    <div class="text-gray-600 text-sm font-normal leading-tight tracking-tight">WhatsApp</div>
-  </div>
-</div>
-    
+
+    <div class="w-full h-fit p-16 px-24 flex-col justify-start items-start gap-6 ">
+        <div class="text-black text-4xl font-medium  leading-10">Your Course</div>
+        <div class="grid grid-cols-3 justify-evenly my-10 py-4 gap-9">
+        </div>
+    </div>
 </body>
+
 </html>

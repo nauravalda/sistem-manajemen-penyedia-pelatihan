@@ -6,6 +6,6 @@ class Dashboard extends BaseController
 {
     public function index(): string
     {
-        return view('dashboard');
+        return view('dashboard').view('footer');
     }
 }

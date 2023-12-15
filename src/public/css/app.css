@@ -575,13 +575,13 @@ video {
   margin-left: 0.5rem;
   margin-right: 0.5rem;
 }
-.my-1 {
-  margin-top: 0.25rem;
-  margin-bottom: 0.25rem;
-}
 .mx-6 {
   margin-left: 1.5rem;
   margin-right: 1.5rem;
+}
+.my-1 {
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
 }
 .my-10 {
   margin-top: 2.5rem;
@@ -928,6 +928,10 @@ video {
 .bg-sys-light-primary {
   --tw-bg-opacity: 1;
   background-color: rgb(103 80 164 / var(--tw-bg-opacity));
+}
+.bg-sys-light-secondary-container {
+  --tw-bg-opacity: 1;
+  background-color: rgb(232 222 248 / var(--tw-bg-opacity));
 }
 .bg-sys-light-surface {
   --tw-bg-opacity: 1;

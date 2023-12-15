@@ -13,6 +13,8 @@ $routes->get('/register', 'Register::index');
 $routes->get('/dashboard', 'Dashboard::index');
 $routes->get('/dashboardReview', 'DashboardReview::index');
 
+$routes->get('/coursesReview', 'CoursesReview::index');
+
 $routes->get('/courses', 'Courses::index');
 $routes->get('/courses/new', 'Courses::new');
 $routes->get('/courses/(:num)', 'Courses::detail/$1');

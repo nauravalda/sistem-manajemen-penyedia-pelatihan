@@ -31,6 +31,7 @@
                 </div>
             </div>
             <div class="h-48 flex-col justify-center items-center gap-3 flex">
+
                 <div class="self-stretch h-14 px-0.5 flex-col justify-start items-center gap-1 flex">
                     <button class="flex flex-col py-2 rounded-full justify-center items-center inline-flex hover:bg-fuchsia-100">
                         <div class="px-4 py-1 justify-center items-center flex">
@@ -52,6 +53,7 @@
                                 </svg>
                             </div>
                         </div>
+
                         <div class="self-stretch text-center text-zinc-900 text-xs font-semibold  leading-none tracking-wide">Courses</div>
                     </button>
                 </div>
@@ -64,6 +66,7 @@
                                 </svg>
                             </div>
                         </div>
+
                         <div class="self-stretch text-center text-zinc-900 text-xs font-semibold  leading-none tracking-wide">Schedule</div>
                     </button>
                 </div>

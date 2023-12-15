@@ -8,10 +8,10 @@ use CodeIgniter\Router\RouteCollection;
 $routes->get('/', 'Home::index');
 
 $routes->get('/login', 'Home::index');
+$routes->get('/register', 'Register::index');
 
 $routes->get('/dashboard', 'Dashboard::index');
-
-$routes->get('/register', 'Register::index');
+$routes->get('/dashboardReview', 'DashboardReview::index');
 
 $routes->get('/courses', 'Courses::index');
 $routes->get('/courses/new', 'Courses::new');

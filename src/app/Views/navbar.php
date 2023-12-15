@@ -13,7 +13,7 @@
 
 <body>
 
-    <div class="w-20 h-screen bg-purple-400 bg-opacity-5 flex-col justify-start items-center inline-flex fixed left-0">
+    <div class="w-20 h-screen bg-fuchsia-50 flex-col justify-start items-center inline-flex fixed left-0">
         <div class="self-stretch h-20 justify-center items-center inline-flex">
             <div class="w-10 h-10 justify-center items-center flex">
                 <div class="origin-top-left rotate-[-15deg] w-8 h-8 relative">
@@ -24,16 +24,16 @@
         <div class="w-20 grow shrink basis-0 pt-11 pb-14 flex-col justify-start items-center gap-10 flex">
             <div class="h-14 flex-col justify-start items-center gap-1 flex">
                 <div class="rounded-2xl justify-start items-start gap-2.5 inline-flex">
-                    <button class="bg-red-100 rounded-2xl shadow justify-center items-center flex">
+                    <button class="bg-red-100 hover:bg-red-200 rounded-2xl shadow-sm justify-center items-center flex">
                         <div class="text-2xl p-2 px-3 justify-center items-center flex ">+
                         </div>
                     </button>
                 </div>
             </div>
             <div class="h-48 flex-col justify-center items-center gap-3 flex">
-                <div class="self-stretch h-14 px-0.5 pb-1 flex-col justify-start items-center gap-1 flex">
-                    <button class=" rounded-full justify-center items-center inline-flex">
 
+                <div class="self-stretch h-14 px-0.5 flex-col justify-start items-center gap-1 flex">
+                    <button class="flex flex-col py-2 rounded-full justify-center items-center inline-flex hover:bg-fuchsia-100">
                         <div class="px-4 py-1 justify-center items-center flex">
                             <div class="w-6 h-6 relative">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -41,12 +41,11 @@
                                 </svg>
                             </div>
                         </div>
+                        <div class="self-stretch text-center text-zinc-900 text-xs font-semibold  leading-none tracking-wide">Home</div>
                     </button>
-                    <div class="self-stretch text-center text-zinc-900 text-xs font-semibold  leading-none tracking-wide">Home</div>
                 </div>
                 <div class="self-stretch h-14 px-0.5 pb-1 flex-col justify-start items-center gap-1 flex">
-                    <button class=" rounded-full justify-center items-center inline-flex">
-
+                    <button class="flex flex-col py-2 rounded-full justify-center items-center inline-flex hover:bg-fuchsia-100">
                         <div class="px-4 py-1 justify-center items-center flex">
                             <div class="w-6 h-6 relative">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -54,12 +53,12 @@
                                 </svg>
                             </div>
                         </div>
+
+                        <div class="self-stretch text-center text-zinc-900 text-xs font-semibold  leading-none tracking-wide">Courses</div>
                     </button>
-                    <div class="self-stretch text-center text-zinc-900 text-xs font-semibold  leading-none tracking-wide">Courses</div>
                 </div>
                 <div class="self-stretch h-14 px-0.5 pb-1 flex-col justify-start items-center gap-1 flex">
-                    <button class=" rounded-full justify-center items-center inline-flex">
-
+                    <button class="flex flex-col py-2 rounded-full justify-center items-center inline-flex hover:bg-fuchsia-100">
                         <div class="px-4 py-1 justify-center items-center flex">
                             <div class="w-6 h-6 relative">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -67,15 +66,16 @@
                                 </svg>
                             </div>
                         </div>
+
+                        <div class="self-stretch text-center text-zinc-900 text-xs font-semibold  leading-none tracking-wide">Schedule</div>
                     </button>
-                    <div class="self-stretch text-center text-zinc-900 text-xs font-semibold  leading-none tracking-wide">Schedule</div>
                 </div>
             </div>
         </div>
         <div class="pt-11 pb-14 flex-col justify-start items-center gap-10 flex">
             <div class="h-32 flex-col justify-center items-center gap-3 flex">
                 <div class="self-stretch h-14 px-0.5 pb-1 flex-col justify-start items-center gap-1 flex">
-                    <button class="rounded-full flex-col justify-center items-center flex">
+                    <button class="flex flex-col py-2 rounded-full justify-center items-center inline-flex hover:bg-fuchsia-100">
                         <div class="px-4 py-1 justify-center items-center inline-flex">
                             <div class="w-6 h-6 relative">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -83,11 +83,11 @@
                                 </svg>
                             </div>
                         </div>
+                        <div class="self-stretch text-center text-zinc-700 text-xs font-sans font-medium  leading-none tracking-wide">Profile</div>
                     </button>
-                    <div class="self-stretch text-center text-zinc-700 text-xs font-medium  leading-none tracking-wide">Profile</div>
                 </div>
                 <div class="self-stretch h-14 px-0.5 pb-1 flex-col justify-start items-center gap-1 flex">
-                    <button class="rounded-full flex-col justify-center items-center flex">
+                    <button class="flex flex-col py-2 rounded-full justify-center items-center inline-flex hover:bg-fuchsia-100">
                         <div class="px-4 py-1 justify-center items-center inline-flex">
                             <div class="w-6 h-6 relative">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -95,8 +95,8 @@
                                 </svg>
                             </div>
                         </div>
+                        <div class="self-stretch text-center text-zinc-700 text-xs font-sans font-medium  leading-none tracking-wide">Logout</div>
                     </button>
-                    <div class="self-stretch text-center text-zinc-700 text-xs font-medium  leading-none tracking-wide">Logout</div>
                 </div>
             </div>
         </div>

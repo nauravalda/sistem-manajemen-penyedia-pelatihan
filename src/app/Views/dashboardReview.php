@@ -10,7 +10,7 @@
   <body>
 <div class="h-full bg-white">
 
-    <section id="home" class="pt-10 p-[72px]">
+    <section id="dashboardReview" class="pt-10 p-[72px]">
         <div class="container">
             <div class="flex flex-wrap space-y-6">
                 <!-- Tombol back -->

@@ -27,6 +27,7 @@
     "tailwindcss": "^3.3.6"
   },
   "dependencies": {
+    "@tailwindcss/line-clamp": "^0.4.4",
     "watch": "^0.13.0"
   }
 }

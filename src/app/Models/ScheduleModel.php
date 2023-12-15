@@ -21,7 +21,6 @@ class ScheduleModel extends Model
     }
 
     // getting course schedule with specific provider_id where the date is greater than today, group by date, and limiting the number of date to num_day
-    // with atribut date (DD Month YYYY), time (HH:MM), name, and ;ocation
     public function getProviderSchedule($id, $num_day)
     {
         $today = date('Y-m-d');
@@ -30,11 +29,20 @@ class ScheduleModel extends Model
     }
 
     // getting course schedule day with number of repetition (sum of schedule in a day) by extracting the day and the hour from the date
-    // example: sunday at 2.00pm has 3 weekly schedule, so the repetition is 3
     public function getCourseScheduleDay($id)
     {
         $today = date('Y-m-d');
         $query = $this->db->query("SELECT DAYNAME(datetime) AS day, HOUR(datetime) AS hour, COUNT(*) AS repetition FROM schedule WHERE course_id = $id GROUP BY day, hour ORDER BY datetime ASC");
         return $query->getResultArray();
     }
+
+    // creating new schedule by inserting start datetime, abd repeating it by adding interval of 7 days for n times
+    public function createSchedule($id, $start, $n)
+    {
+        $query = $this->db->query("INSERT INTO schedule (course_id, datetime) VALUES ($id, '$start')");
+        for ($i = 1; $i < $n; $i++) {
+            $query = $this->db->query("INSERT INTO schedule (course_id, datetime) VALUES ($id, DATE_ADD('$start', INTERVAL $i WEEK))");
+        }
+    }
+
 }

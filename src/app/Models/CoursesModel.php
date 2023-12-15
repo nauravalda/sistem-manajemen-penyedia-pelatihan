@@ -15,4 +15,13 @@ class CoursesModel extends Model
    {
       return $this->where(['id' => $id])->first();
    }
+
+   // creating new course by inserting list of data and returning the id of the new course
+   public function createCourse($data)
+   {
+      $this->db->table('course')->insert($data);
+      return $this->db->insertID();
+   }
+
+
 }

@@ -15,11 +15,11 @@
             <div class="flex flex-wrap space-y-6">
                 <!-- Tombol back -->
                 <div class="w-full self-start text-light-primary gap-2">
-                    <button class="flex items-center text-sm font-medium font-['Roboto'] leading-tight">
+                    <a href="/dashboard" class="flex items-center text-sm font-medium font-['Roboto'] leading-tight">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" class="w-5 h-5">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12h-15m0 0l6.75 6.75M4.5 12l6.75-6.75" />
                     </svg>Back
-                    </button>
+                    </a>
                 </div>
 
                 <!-- Foto Course -->

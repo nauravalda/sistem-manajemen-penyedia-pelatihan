@@ -125,48 +125,37 @@
                           </thead>
                           <!-- Konten Isi -->
                           <tbody class="text-left">
+                            <?php foreach ($data_courses as $kursus) : ?>
+                            <?php
+                                // Menggunakan number_format untuk memformat harga menjadi format mata uang rupiah
+                                $formattedPrice = 'Rp' . number_format($kursus['price'], 0, ',', '.');
+                            ?>
+                            <?php
+                                // Menggunakan number_format untuk memformat margin menjadi format mata uang rupiah
+                                $formattedMargin = 'Rp' . number_format($kursus['margin'], 0, ',', '.');
+                            ?>
                               <tr class="text-gray-900">
                                   <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap bg-light-secondary">
-                                      Course Name
+                                      <?= $kursus['course_name']; ?>
                                   </th>
                                   <td class="px-6 py-4">
-                                      Rp100.000
+                                      <?= $formattedPrice; ?>
                                   </td>
                                   <td class="px-6 py-4 bg-light-secondary">
-                                      109
+                                      <?= $kursus['participants']; ?>
                                   </td>
                                   <td class="px-6 py-4">
-                                      Rp10.900.000
+                                      <?= $formattedMargin; ?>
                                   </td>
                                   <td class="px-6 py-4 bg-light-secondary">
-                                      4.8
+                                      <?= $kursus['rating']; ?>
                                   </td>
                                   <td class="flex px-6 py-4">
-                                      129
-                                      <button class="rounded-full ml-2 bg-light-primary text-white text-xs px-2">See Review</button>
+                                      <?= $kursus['reviews']; ?>
+                                      <a href='/dashboardReview/<?= $kursus['id']; ?>' class="rounded-full ml-2 bg-light-primary text-white text-xs px-2">See Review</a>
                                   </td>
                               </tr>
-                              <tr class="text-gray-900">
-                                  <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap bg-light-secondary">
-                                      Course Name
-                                  </th>
-                                  <td class="px-6 py-4">
-                                      Rp150.000
-                                  </td>
-                                  <td class="px-6 py-4 bg-light-secondary">
-                                      200
-                                  </td>
-                                  <td class="px-6 py-4">
-                                      Rp10.800.000
-                                  </td>
-                                  <td class="px-6 py-4 bg-light-secondary">
-                                      4.7
-                                  </td>
-                                  <td class="flex px-6 py-4">
-                                      130
-                                      <button class="rounded-full ml-2 bg-light-primary text-white text-xs px-2">See Review</button>
-                                  </td>
-                              </tr>
+                            <?php endforeach; ?>
                           </tbody>
                       </table>
                   </div>

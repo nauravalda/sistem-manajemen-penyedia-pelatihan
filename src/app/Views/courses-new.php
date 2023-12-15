@@ -28,15 +28,6 @@
             class="border border-sys-light-on-surface-variant rounded-md focus:border-gray-500 focus:shadow-sm w-full p-3 h-fit font-sans bg-white"
             placeholder="Course Name" autocomplete="off" />
         </div>
-        <!-- Short Descriptions -->
-        <div class="relative h-14 w-full">
-          <label for="shortDescriptions"
-            class="absolute -top-[5px] left-4 px-1 font-sans text-sys-light-on-surface-variant leading-none bg-white w-fit">Short
-            Descriptions</label>
-          <input type="text" id="shortDescriptions"
-            class="border border-sys-light-on-surface-variant rounded-md focus:border-gray-500 focus:shadow-sm w-full p-3 h-fit font-sans bg-white"
-            placeholder="Short Descriptions" autocomplete="off" />
-        </div>
         <!-- Price with Prefix Rp-->
         <div class="relative h-14 w-full">
           <label for="price"
@@ -139,7 +130,7 @@
           <label for="fullDescription"
             class="absolute -top-[5px] left-4 px-1 font-sans text-sys-light-on-surface-variant leading-none bg-white w-fit">Full
             Description</label>
-          <textarea type="text" id="fullDescription"
+          <textarea type="text" id="description"
             class="border border-sys-light-on-surface-variant rounded-md focus:border-gray-500 focus:shadow-sm w-full p-3 min-h-[320px] h-fit resize-none font-sans bg-white"
             placeholder="Full Description" autocomplete="off"></textarea>
         </div>

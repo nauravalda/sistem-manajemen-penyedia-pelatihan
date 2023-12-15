@@ -17,6 +17,20 @@ class Courses extends BaseController
         return view('navbar').view('courses-new').view('footer');
     }
 
+    // public function store(Request $request): string
+    // {
+        
+    //     $model = new CoursesModel();
+    //     $data = [
+    //         'name' => $request->getVar('name'),
+    //         'price' => $request->getVar('price'),
+    //         'tags' => $request->getVar('tags'),
+    //         'locations' => $request->getVar('locations'),
+    //         'desc' => $request->getVar('description'),
+
+    //     ];
+    // }
+
     public function detail(int $id): string
     {
         return view('navbar').view('courses-detail', ['id' => $id]).view('footer');

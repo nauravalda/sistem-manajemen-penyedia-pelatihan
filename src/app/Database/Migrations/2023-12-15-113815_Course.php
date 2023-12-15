@@ -29,6 +29,14 @@ class Course extends Migration
                 'type' => 'TEXT',
                 'null' => true,
             ],
+            'what_you_will_learn' => [
+                'type' => 'TEXT',
+                'null' => true,
+            ],
+            'course_content' => [
+                'type' => 'TEXT',
+                'null' => true,
+            ],
             'desc' => [
                 'type' => 'TEXT',
                 'null' => true,

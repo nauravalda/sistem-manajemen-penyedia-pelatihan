@@ -10,4 +10,9 @@ class CoursesModel extends Model
    {
       return $this->findAll();
    }
+
+   public function getDataCourseById($id)
+   {
+      return $this->where(['id' => $id])->first();
+   }
 }

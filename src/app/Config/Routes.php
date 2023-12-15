@@ -18,4 +18,4 @@ $routes->get('/courses/new', 'Courses::new');
 $routes->get('/courses/(:num)', 'Courses::detail/$1');
 $routes->get('/courses/(:num)/edit', 'Courses::edit/$1');
 
-$routes->get('/schedule', 'Schedule::index');
+$routes->get('/schedule/(:num)', 'Schedule::index/$1');

@@ -14,13 +14,15 @@
 <body>
 
     <div class="w-20 h-screen bg-fuchsia-50 flex-col justify-start items-center inline-flex fixed left-0">
-        <div class="self-stretch h-20 justify-center items-center inline-flex">
+        <button 
+        onclick="window.location.href = '/dashboard';"
+        class="self-stretch h-20 justify-center items-center inline-flex">
             <div class="w-10 h-10 justify-center items-center flex">
                 <div class="origin-top-left rotate-[-15deg] w-8 h-8 relative">
                     <img class="w-8 h-8 left-[0.02px] top-[0.08px] absolute origin-top-left" src="/assets/BrandLogo.png" />
                 </div>
             </div>
-        </div>
+        </button>
         <div class="w-20 grow shrink basis-0 pt-11 pb-14 flex-col justify-start items-center gap-10 flex">
             <div class="h-14 flex-col justify-start items-center gap-1 flex">
                 <div class="rounded-2xl justify-start items-start gap-2.5 inline-flex">
@@ -33,7 +35,9 @@
             <div class="h-48 flex-col justify-center items-center gap-3 flex">
 
                 <div class="self-stretch h-14 px-0.5 flex-col justify-start items-center gap-1 flex">
-                    <button class="flex flex-col py-2 rounded-full justify-center items-center inline-flex hover:bg-fuchsia-100">
+                    <button 
+                    onclick="window.location.href = '/dashboard';"
+                    class="flex flex-col py-2 rounded-full justify-center items-center inline-flex hover:bg-fuchsia-100">
                         <div class="px-4 py-1 justify-center items-center flex">
                             <div class="w-6 h-6 relative">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -45,7 +49,9 @@
                     </button>
                 </div>
                 <div class="self-stretch h-14 px-0.5 pb-1 flex-col justify-start items-center gap-1 flex">
-                    <button class="flex flex-col py-2 rounded-full justify-center items-center inline-flex hover:bg-fuchsia-100">
+                    <button 
+                    onclick="window.location.href = '/courses';"
+                    class="flex flex-col py-2 rounded-full justify-center items-center inline-flex hover:bg-fuchsia-100">
                         <div class="px-4 py-1 justify-center items-center flex">
                             <div class="w-6 h-6 relative">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -58,7 +64,9 @@
                     </button>
                 </div>
                 <div class="self-stretch h-14 px-0.5 pb-1 flex-col justify-start items-center gap-1 flex">
-                    <button class="flex flex-col py-2 rounded-full justify-center items-center inline-flex hover:bg-fuchsia-100">
+                    <button 
+                    onclick="window.location.href = '/schedule';"
+                    class="flex flex-col py-2 rounded-full justify-center items-center inline-flex hover:bg-fuchsia-100">
                         <div class="px-4 py-1 justify-center items-center flex">
                             <div class="w-6 h-6 relative">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -87,7 +95,9 @@
                     </button>
                 </div>
                 <div class="self-stretch h-14 px-0.5 pb-1 flex-col justify-start items-center gap-1 flex">
-                    <button class="flex flex-col py-2 rounded-full justify-center items-center inline-flex hover:bg-fuchsia-100">
+                    <button 
+                    onclick="window.location.href = '/logout';"
+                    class="flex flex-col py-2 rounded-full justify-center items-center inline-flex hover:bg-fuchsia-100">
                         <div class="px-4 py-1 justify-center items-center inline-flex">
                             <div class="w-6 h-6 relative">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">

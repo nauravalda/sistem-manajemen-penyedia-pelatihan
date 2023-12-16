@@ -2,7 +2,7 @@
   integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 <div class="container h-full">
   <div class="row">
-    <form id="newCourseForm" action="/courses/<?= $course['id']; ?>/update" method="post" enctype="multipart/form-data">
+    <form id="newCourseForm" action="/courses/<?= $course['id']; ?>/edit" method="post" enctype="multipart/form-data">
       <div class='flex flex-col my-5 gap-24 justify-end'>
         <!-- Image Header Input -->
         <div
@@ -83,26 +83,26 @@
                 <div class="relative h-14 w-full">
                   <label for="date"
                     class="absolute -top-[5px] left-4 px-1 font-sans text-sys-light-on-surface-variant leading-none bg-sys-light-surface w-fit">Date</label>
-                  <input type="date" id="date"
+                  <input type="date" id="date" name="dates[]"
                     class="border border-sys-light-on-surface-variant rounded-md focus:border-gray-500 focus:shadow-sm w-full p-3 h-full resize-none font-sans bg-sys-light-surface"
-                    placeholder="Select date" autocomplete="off" value="<?= $child['date']; ?>">
+                    placeholder="Select date" autocomplete="off" value="<?= $child['start_date']; ?>">
                 </div>
                 <!-- Time -->
                 <div class="relative h-14 w-full">
                   <label for="time"
                     class="absolute -top-[5px] left-4 px-1 font-sans text-sys-light-on-surface-variant leading-none bg-sys-light-surface w-fit">Time</label>
-                  <input type="time" id="time"
+                  <input type="time" id="time" name="times[]"
                     class="border border-sys-light-on-surface-variant rounded-md focus:border-gray-500 focus:shadow-sm w-full p-3 h-full resize-none font-sans bg-sys-light-surface"
                     placeholder="Select time" autocomplete="off" value="<?= $child['time']; ?>">
                 </div>
                 <!-- Repeat Weekly For -->
                 <div class="relative h-14 w-full">
-                  <label for="repeatWeeklyFor"
+                  <label for="repeat_weekly"
                     class="absolute -top-[5px] left-4 px-1 font-sans text-sys-light-on-surface-variant leading-none bg-sys-light-surface w-fit">Repeat
                     weekly for</label>
-                  <input type="number" id="repeatWeeklyFor"
+                  <input type="number" id="repeat_weekly" name="repeatNums[]"
                     class="border border-sys-light-on-surface-variant rounded-md focus:border-gray-500 focus:shadow-sm w-full p-3 h-full resize-none font-sans bg-sys-light-surface"
-                    placeholder="XX times" value=1 autocomplete="off" value="<?= $child['repetition']; ?>">
+                    placeholder="XX times" autocomplete="off" value="<?= $child['repetition']; ?>">
                 </div>
                 <!-- Delete Button -->
                 <button onclick="deleteScheduleEntry(this)"
@@ -118,30 +118,30 @@
           <h1 class='font-sans font-bold text-headline-md'>Course Details</h1>
           <!-- What you will learn -->
           <div class="relative h-fit w-full">
-            <label id="what-you-will-learn" name="what-you-will-learn" for="whatYouWillLearn"
-              class="absolute -top-[5px] left-4 px-1 font-sans text-sys-light-on-surface-variant leading-none bg-white w-fit">What
-              you will learn</label>
-            <textarea type="text" id="whatYouWillLearn"
+            <label for="what_you_will_learn"
+              class="absolute -top-[5px] left-4 px-1 font-sans text-sys-light-on-surface-variant leading-none bg-white w-fit">
+              What you will learn</label>
+            <textarea type="text" id="what_you_will_learn" name="what_you_will_learn"
               class="border border-sys-light-on-surface-variant rounded-md focus:border-gray-500 focus:shadow-sm w-full p-3 min-h-[240px] h-fit resize-none font-sans bg-white"
               placeholder="What you will learn" autocomplete="off"><?= $course['what_you_will_learn']; ?></textarea>
           </div>
 
           <!-- Course Content -->
           <div class="relative h-fit w-full">
-            <label id="course-content" name="course-content" for="course-content"
+            <label for="course_content"
               class="absolute -top-[5px] left-4 px-1 font-sans text-sys-light-on-surface-variant leading-none bg-white w-fit">Course
               Content</label>
-            <textarea type="text" id="courseContent"
+            <textarea type="text" id="course_content" name="course_content"
               class="border border-sys-light-on-surface-variant rounded-md focus:border-gray-500 focus:shadow-sm w-full p-3 min-h-[320px] h-fit resize-none font-sans bg-white"
               placeholder="Course Content" autocomplete="off"><?= $course['course_content']; ?></textarea>
           </div>
 
           <!-- Full Description -->
           <div class="relative h-fit w-full">
-            <label id="description" name="description" for="description"
+            <label for="desc"
               class="absolute -top-[5px] left-4 px-1 font-sans text-sys-light-on-surface-variant leading-none bg-white w-fit">Full
               Description</label>
-            <textarea type="text" id="description"
+            <textarea type="text" id="desc" name="desc"
               class="border border-sys-light-on-surface-variant rounded-md focus:border-gray-500 focus:shadow-sm w-full p-3 min-h-[320px] h-fit resize-none font-sans bg-white"
               placeholder="Full Description" autocomplete="off"><?= $course['desc']; ?></textarea>
           </div>
@@ -150,10 +150,10 @@
 
         <!-- Save -->
         <div class='flex flex-row gap-12 w-full justify-end'>
+          <button onclick="window.location.href='/courses/<?= $course['id']; ?>/delete'"
+            class="bg-sys-light-error hover:bg-ref-error-error30 text-sys-light-on-error font-medium h-fit px-8 py-2.5 rounded-full">Delete</button>
           <button onclick="window.location.href='/courses'"
             class='outline outline-1 outline-sys-light-outline-variant hover:bg-sys-light-surface hover:text-sys-light-on-surface-variant font-medium h-fit px-8 py-2.5 rounded-full'>Cancel</button>
-          <!-- <button id="submitButton" type="submit"
-            class='bg-sys-light-primary hover:bg-ref-primary-primary30 text-sys-light-on-primary font-medium h-fit px-8 py-2.5 rounded-full'>Save</button> -->
           <button id="submitButton" type="submit"
             class='bg-sys-light-primary hover:bg-ref-primary-primary30 text-sys-light-on-primary font-medium h-fit px-8 py-2.5 rounded-full disabled:opacity-50 disabled:cursor-not-allowed'>Save</button>
         </div>
@@ -164,6 +164,7 @@
 </div>
 
 <script>
+
   function deleteEntry(element) {
     var scheduleEntry = element.parentElement;
     scheduleEntry.remove();

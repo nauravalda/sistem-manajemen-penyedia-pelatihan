@@ -87,30 +87,30 @@
           <h1 class='font-sans font-bold text-headline-md'>Course Details</h1>
           <!-- What you will learn -->
           <div class="relative h-fit w-full">
-            <label id="what-you-will-learn" name="what-you-will-learn" for="whatYouWillLearn" 
+            <label for="what_you_will_learn" 
               class="absolute -top-[5px] left-4 px-1 font-sans text-sys-light-on-surface-variant leading-none bg-white w-fit">What
               you will learn</label>
-            <textarea type="text" id="whatYouWillLearn"
+            <textarea type="text" id="what_you_will_learn" name="what_you_will_learn"
               class="border border-sys-light-on-surface-variant rounded-md focus:border-gray-500 focus:shadow-sm w-full p-3 min-h-[240px] h-fit resize-none font-sans bg-white"
               placeholder="What you will learn" autocomplete="off"></textarea>
           </div>
 
           <!-- Course Content -->
           <div class="relative h-fit w-full">
-            <label id="course-content" name="course-content" for="course-content"
+            <label for="course_content"
               class="absolute -top-[5px] left-4 px-1 font-sans text-sys-light-on-surface-variant leading-none bg-white w-fit">Course
               Content</label>
-            <textarea type="text" id="courseContent"
+            <textarea type="text" id="course_content" name="course_content"
               class="border border-sys-light-on-surface-variant rounded-md focus:border-gray-500 focus:shadow-sm w-full p-3 min-h-[320px] h-fit resize-none font-sans bg-white"
               placeholder="Course Content" autocomplete="off"></textarea>
           </div>
 
           <!-- Full Description -->
           <div class="relative h-fit w-full">
-            <label id="description" name="description" for="description"
+            <label for="desc"
               class="absolute -top-[5px] left-4 px-1 font-sans text-sys-light-on-surface-variant leading-none bg-white w-fit">Full
               Description</label>
-            <textarea type="text" id="description"
+            <textarea type="text" id="desc" name="desc"
               class="border border-sys-light-on-surface-variant rounded-md focus:border-gray-500 focus:shadow-sm w-full p-3 min-h-[320px] h-fit resize-none font-sans bg-white"
               placeholder="Full Description" autocomplete="off"></textarea>
           </div>

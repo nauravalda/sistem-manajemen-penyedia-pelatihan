@@ -40,9 +40,9 @@ class Courses extends BaseController
         $price = $this->request->getPost('price');
         $tags = $this->request->getPost('tags');
         $locations = $this->request->getPost('locations');
-        $what_you_will_learn = $this->request->getVar('what_you_will_learn');
-        $course_content = $this->request->getVar('course_content');
-        $desc = $this->request->getVar('desc');
+        $what_you_will_learn = $this->request->getPost('what_you_will_learn');
+        $course_content = $this->request->getPost('course_content');
+        $desc = $this->request->getPost('desc');
         $image = $this->request->getFile('userfile');
 
         $newName = $image->getRandomName();
@@ -114,7 +114,7 @@ class Courses extends BaseController
 
         $scheduleModel = new ScheduleModel();
         $data['course'] = $courseModel->getDataCourseById($id)[0];
-        $data['schedule'] = $scheduleModel->getCourseScheduleDay($id);
+        $data['schedule'] = $scheduleModel->getCourseScheduleRepetitions($id);
         return view('navbar').view('courses-edit', $data).view('footer');
         // return $this->response->setJSON($data);
     }
@@ -132,9 +132,9 @@ class Courses extends BaseController
         $price = $this->request->getPost('price');
         $tags = $this->request->getPost('tags');
         $locations = $this->request->getPost('locations');
-        $what_you_will_learn = $this->request->getVar('what_you_will_learn');
-        $course_content = $this->request->getVar('course_content');
-        $desc = $this->request->getVar('desc');
+        $what_you_will_learn = $this->request->getPost('what_you_will_learn');
+        $course_content = $this->request->getPost('course_content');
+        $desc = $this->request->getPost('desc');
         
         // checking if the image is updated
         if ($this->request->getFile('userfile')->getName() != '') {
@@ -162,7 +162,7 @@ class Courses extends BaseController
 
         // Updating course
         $courseModel = new CoursesModel();
-        $courseModel->update($id, $data);
+        $courseModel->updateCourse($id, $data);
 
         // Updating schedule
         // Deleting all schedule with course_id = $course_id
@@ -184,5 +184,23 @@ class Courses extends BaseController
 
         // Redirecting to the new course page
         return redirect()->to('/courses/'.$id);
+    }
+
+    public function delete($id)
+    {
+        $session = session();
+        if (!$session->get('isLoggedIn')) {
+            return redirect()->to('/login');
+        }
+
+        // check if the course is owned by the user
+        $courseModel = new CoursesModel();
+        $course = $courseModel->getDataCourseById($id)[0];
+        if ($course['provider_id'] != $session->get('id')) {
+            return redirect()->to('/courses');
+        }
+
+        $courseModel->deleteCourse($id);
+        return redirect()->to('/courses');
     }
 }

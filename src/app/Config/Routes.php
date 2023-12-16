@@ -11,9 +11,9 @@ $routes->get('/login', 'Home::index');
 $routes->get('/register', 'Register::index');
 
 $routes->get('/dashboard', 'Dashboard::index');
-$routes->get('/dashboardReview', 'DashboardReview::index');
+$routes->get('/dashboardReview/(:num)', 'DashboardReview::index/$1');
 
-$routes->get('/coursesReview', 'CoursesReview::index');
+$routes->get('/coursesReview/(:num)', 'CoursesReview::index/$1');
 
 $routes->get('/courses', 'Courses::index');
 $routes->get('/courses/new', 'Courses::new');

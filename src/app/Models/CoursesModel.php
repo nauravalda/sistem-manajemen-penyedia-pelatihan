@@ -17,9 +17,11 @@ class CoursesModel extends Model
    public function getDataCourseById($id)
    {
       // return all from course_view where provider_id = $id
-      return $this->db->table($this->table_view)->where(['provider_id' => $id])->get()->getResultArray();
+      return $this->db->table($this->table_view)->where(['id' => $id])->get()->getResultArray();
       
    }
+
+
 
    public function getDataCourseByProviderId($id)
    {

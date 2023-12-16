@@ -103,6 +103,86 @@ class Courses extends BaseController
         if (!$session->get('isLoggedIn')) {
             return redirect()->to('/login');
         }
-        return view('navbar').view('courses-edit', ['id' => $id]).view('footer');
+
+        // check if the course is owned by the user
+        $courseModel = new CoursesModel();
+        $course = $courseModel->getDataCourseById($id)[0];
+        if ($course['provider_id'] != $session->get('id')) {
+            return redirect()->to('/courses');
+        }
+
+
+        $scheduleModel = new ScheduleModel();
+        $data['course'] = $courseModel->getDataCourseById($id)[0];
+        $data['schedule'] = $scheduleModel->getCourseScheduleDay($id);
+        return view('navbar').view('courses-edit', $data).view('footer');
+        // return $this->response->setJSON($data);
+    }
+
+    public function update($id)
+    {
+        helper(['form']);
+
+        // Getting user id from session
+        $session = session();
+        $user_id = $session->get('id');
+
+        // Getting data from form
+        $name = $this->request->getPost('course_name');
+        $price = $this->request->getPost('price');
+        $tags = $this->request->getPost('tags');
+        $locations = $this->request->getPost('locations');
+        $what_you_will_learn = $this->request->getVar('what_you_will_learn');
+        $course_content = $this->request->getVar('course_content');
+        $desc = $this->request->getVar('desc');
+        
+        // checking if the image is updated
+        if ($this->request->getFile('userfile')->getName() != '') {
+            $image = $this->request->getFile('userfile');
+            $newName = $image->getRandomName();
+            $image->move('./uploads', $newName);
+            // Construct the image URL
+            $img_url = base_url('uploads/' . $newName);
+            $data = [
+                'url_img' => $img_url,
+            ];
+        } else {
+            $data = [];
+        }
+
+        $data = [
+            'name' => $name,
+            'what_you_will_learn' => $what_you_will_learn,
+            'course_content' => $course_content,
+            'desc' => $desc,
+            'price' => $price,
+            'tags' => $tags,
+            'locations' => $locations,
+        ];
+
+        // Updating course
+        $courseModel = new CoursesModel();
+        $courseModel->update($id, $data);
+
+        // Updating schedule
+        // Deleting all schedule with course_id = $course_id
+        $scheduleModel = new ScheduleModel();
+        $scheduleModel->deleteSchedule($id);
+
+        // Creating new schedule
+        $dates = $this->request->getPost('dates');
+        $times = $this->request->getPost('times');
+        $repeatNums = $this->request->getPost('repeatNums');
+
+        for ($i = 0; $i < count($dates); $i++) {
+            $date = $dates[$i];
+            $time = $times[$i];
+            $repeatNum = $repeatNums[$i];
+            $start = $date.' '.$time;
+            $scheduleModel->createSchedule($id, $start, $repeatNum);
+        }
+
+        // Redirecting to the new course page
+        return redirect()->to('/courses/'.$id);
     }
 }

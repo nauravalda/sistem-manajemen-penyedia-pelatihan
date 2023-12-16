@@ -76,7 +76,7 @@
           </div>
 
           <!-- Schedule List -->
-          <div id="scheduleEntries">
+          <div id="scheduleEntries" class='flex flex-col gap-24'>
               <!-- Schedule input fields will be added here dynamically -->
           </div>
         </div>

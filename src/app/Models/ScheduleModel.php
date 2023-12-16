@@ -32,7 +32,7 @@ class ScheduleModel extends Model
     public function getCourseScheduleDay($id)
     {
         $today = date('Y-m-d');
-        $query = $this->db->query("SELECT DAYNAME(datetime) AS day, HOUR(datetime) AS hour, COUNT(*) AS repetition FROM schedule WHERE course_id = $id GROUP BY day, hour ORDER BY datetime ASC");
+        $query = $this->db->query("SELECT DATE_FORMAT(datetime, '%Y-%m-%d') AS date, DATE_FORMAT(datetime, '%H:%i') AS time, COUNT(*) AS repetition FROM schedule WHERE course_id = $id GROUP BY date, time ORDER BY datetime ASC");
         return $query->getResultArray();
     }
 
@@ -45,4 +45,8 @@ class ScheduleModel extends Model
         }
     }
 
+    public function deleteSchedule($id)
+    {
+        $this->db->table($this->table)->delete(['id' => $id]);
+    }
 }

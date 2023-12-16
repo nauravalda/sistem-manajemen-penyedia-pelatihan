@@ -15,6 +15,8 @@ class CourseView extends Migration
                 course.id AS id,
                 course.name AS name,
                 course.url_img AS url_img,
+                course.what_you_will_learn AS what_you_will_learn,
+                course.course_content AS course_content,
                 course.desc AS `desc`,
                 course.price AS price,
                 course.tags AS tags,

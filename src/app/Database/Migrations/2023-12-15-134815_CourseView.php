@@ -19,6 +19,7 @@ class CourseView extends Migration
                 course.price AS price,
                 course.tags AS tags,
                 course.locations AS locations,
+                course.provider_id AS provider_id,
                 user.name AS provider_name
             FROM
                 (course JOIN user ON (course.provider_id = user.id))

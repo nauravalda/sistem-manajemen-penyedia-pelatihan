@@ -6,6 +6,10 @@ class Register extends BaseController
 {
     public function index()
     {
+        $session = session();
+        if ($session->get('isLoggedIn')) {
+            return redirect()->to('/dashboard');
+        }
         return view('register').view('footer');
     }
 

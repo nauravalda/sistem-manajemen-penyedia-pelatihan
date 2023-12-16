@@ -8,13 +8,22 @@ class Courses extends BaseController
 {
     public function index()
     {
+        $session = session();
+        if (!$session->get('isLoggedIn')) {
+            return redirect()->to('/login');
+        }
         $model = new CoursesModel();
-        $data['course'] = $model->getDataCourse();
+        $data['course'] = $model->getDataCourseByProviderId($session->get('id'));
+        // print data to console
         return view('navbar').view('courses', $data).view('footer');
     }
 
     public function new()
     {
+        $session = session();
+        if (!$session->get('isLoggedIn')) {
+            return redirect()->to('/login');
+        }
         return view('navbar').view('courses-new').view('footer');
     }
 
@@ -22,7 +31,7 @@ class Courses extends BaseController
     {
         // Getting user id from session
         $session = session();
-        $user_id = $session->get('id') ?? 1;
+        $user_id = $session->get('id');
 
         // Getting data from form
         $name = $this->request->getPost('name');
@@ -34,17 +43,13 @@ class Courses extends BaseController
         $desc = $this->request->getPost('desc');
 
         // Getting image file and moving it to public/uploads/
-        $img = $this->request->getFile('img');
+        $img = $this->request->getFile('image');
         if ($img->getError() == 4) {
             $imgName = 'default.png';
         } else {
             $imgName = $img->getRandomName();
             $img->move('uploads', $imgName);
         }
-
-        // Uploading image to database
-        $model = new ImageModel();
-        $model->createImage(['course_id' => $user_id, 'url_img' => $imgName]);
 
         // Creating data array
         $data = [
@@ -76,7 +81,7 @@ class Courses extends BaseController
             $model->createSchedule($id, $start, $repeatNum);
         }
 
-        // $this->session->setFlashdata('success','Course created successfully');
+        $this->session->setFlashdata('success','Course created successfully');
         
         // Redirecting to the new course page
         return redirect()->to('/courses/'.$id);
@@ -84,11 +89,19 @@ class Courses extends BaseController
 
     public function detail(int $id)
     {
+        $session = session();
+        if (!$session->get('isLoggedIn')) {
+            return redirect()->to('/login');
+        }
         return view('navbar').view('courses-detail', ['id' => $id]).view('footer');
     }
 
     public function edit(int $id)
     {
+        $session = session();
+        if (!$session->get('isLoggedIn')) {
+            return redirect()->to('/login');
+        }
         return view('navbar').view('courses-edit', ['id' => $id]).view('footer');
     }
 }

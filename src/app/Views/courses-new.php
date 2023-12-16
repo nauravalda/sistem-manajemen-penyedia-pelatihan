@@ -2,7 +2,7 @@
   integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 <div class="container h-full">
   <div class="row">
-    <form id="newCourseForm" action="/courses/submit" method="POST">
+    <form id="newCourseForm" action="/courses/new" method="POST">
     <div class='flex flex-col my-5 gap-24 justify-end'>
         <!-- Image Header Input -->
         <div

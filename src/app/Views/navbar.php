@@ -24,9 +24,11 @@
             </div>
         </button>
         <div class="w-20 grow shrink basis-0 pt-11 pb-14 flex-col justify-start items-center gap-10 flex">
-            <div class="h-14 flex-col justify-start items-center gap-1 flex">
-                <div class="rounded-2xl justify-start items-start gap-2.5 inline-flex">
-                    <button class="bg-red-100 hover:bg-red-200 rounded-2xl shadow-sm justify-center items-center flex">
+            <div class="h-14 w-14 flex-col justify-start items-center gap-1 flex">
+                <div class="h-full w-full rounded-2xl justify-start items-start gap-2.5 inline-flex">
+                    <button 
+                    onclick="window.location.href = '/courses/new';"
+                    class="h-full w-full bg-red-100 hover:bg-red-200 rounded-2xl shadow-sm justify-center items-center flex">
                         <div class="text-2xl p-2 px-3 justify-center items-center flex ">+
                         </div>
                     </button>

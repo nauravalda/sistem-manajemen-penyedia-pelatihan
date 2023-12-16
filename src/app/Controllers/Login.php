@@ -6,6 +6,10 @@ class Login extends BaseController
 {
     public function index()
     {
+        $session = session();
+        if ($session->get('isLoggedIn')) {
+            return redirect()->to('/dashboard');
+        }
         return view('login').view('footer');
     }
 
@@ -19,7 +23,12 @@ class Login extends BaseController
 
         if ($user) {
             $session = session();
-            $session->set('user', $user);
+            $session->set([
+                'id' => $user['id'],
+                'name' => $user['name'],
+                'email' => $user['email'],
+                'isLoggedIn' => true,
+            ]);
             return redirect()->to('/dashboard');
         } else {
             return redirect()->to('/login');

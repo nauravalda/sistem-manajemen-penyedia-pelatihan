@@ -124,7 +124,7 @@
                               </tr>
                           </thead>
                           <!-- Konten Isi -->
-                          <tbody class="text-left">
+                          <tbody class="">
                             <?php foreach ($data_courses as $kursus) : ?>
                             <?php
                                 // Menggunakan number_format untuk memformat harga menjadi format mata uang rupiah
@@ -150,7 +150,7 @@
                                   <td class="px-6 py-4 bg-light-secondary">
                                       <?= $kursus['rating']; ?>
                                   </td>
-                                  <td class="flex px-6 py-4">
+                                  <td class="flex px-6 py-4 justify-center">
                                       <?= $kursus['reviews']; ?>
                                       <a href='/dashboardReview/<?= $kursus['id']; ?>' class="rounded-full ml-2 bg-light-primary text-white text-xs px-2">See Review</a>
                                   </td>

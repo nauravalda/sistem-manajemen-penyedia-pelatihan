@@ -93,7 +93,7 @@ class APIController extends BaseController
             $data = [
                 'message' => 'success',
                 'data' => [
-                    'schedule_day' => $model->getCourseScheduleDay($id)
+                    'schedule_day' => $model->getCourseScheduleRepetitions($id)
                 ]
                 ];
             return $this->response->setJSON($data);

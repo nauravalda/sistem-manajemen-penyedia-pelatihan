@@ -29,15 +29,6 @@ class ScheduleModel extends Model
     }
 
     // getting schedule day, first occurrence, number of repetition by weekly interval, using course id
-    // example: getCourseScheduleDay(1) will return which consist data (1, '2021-05-03 09:00:00'), (1, '2021-05-10 09:00:00'), (1, '2021-05-17 09:00:00'
-    // $course = [
-    //     {
-    //         "day": "Monday",
-    //         "first_rep_occurence_date": "2021-05-03",
-    //         "first_rep_occurence_time": "09:00",
-    //         "repetition": 3
-    //     }
-    // ]
     public function getCourseScheduleRepetitions($id)
     {
         // selecting all schedule  by a course_id

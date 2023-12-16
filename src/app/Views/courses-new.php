@@ -2,7 +2,7 @@
   integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 <div class="container h-full">
   <div class="row">
-    <form id="newCourseForm" action="/courses/new" method="POST">
+    <form id="newCourseForm" action="/courses/new" method="POST" enctype="multipart/form-data">
     <div class='flex flex-col my-5 gap-24 justify-end'>
         <!-- Image Header Input -->
         <div
@@ -11,13 +11,13 @@
           <div class="relative h-14 w-full">
             <label for="image"
               class="absolute -top-[5px] left-4 px-1 font-sans text-sys-light-on-surface-variant leading-none bg-white w-fit">Image</label>
-            <input type="file" id="image" class="border border-sys-light-on-surface-variant rounded-md focus:border-gray-500 focus:shadow-sm w-full p-3 h-fit font-sans bg-white
+            <input type="file" id="image" name="userfile" class="border border-sys-light-on-surface-variant rounded-md focus:border-gray-500 focus:shadow-sm w-full p-3 h-fit font-sans bg-white
             file:mr-4 file:py-2 file:px-4
             file:rounded-full file:border-0
-            file:text-sm file:font-sans file:font-medium file:text-sys-darl-on-primary
+            file:text-sm file:font-sans file:font-medium file:text-sys-dark-on-primary
             file:bg-sys-dark-primary file:outline-none file:cursor-pointer file:shadow-sm file:transition-colors file:duration-200 file:ease-in-out
             file:placeholder-sys-dark-on-primary file:placeholder-opacity-50 file:placeholder-shown:opacity-100 file:placeholder-shown:transition-opacity file:placeholder-shown:duration-200 file:placeholder-shown:ease-in-out
-            file:hover:bg-ref-primary-primary70" placeholder="Image" autocomplete="off" />
+            file:hover:bg-ref-primary-primary70" placeholder="Image" autocomplete="off"/>
           </div>
         </div>
 
@@ -27,10 +27,10 @@
           <h1 class='font-sans font-bold text-headline-md leading-loose'>General Informations</h1>
           <!-- Course Name -->
           <div class="relative h-14 w-full">
-            <label for="courseName"
+            <label for="course_name"
               class="absolute -top-[5px] left-4 px-1 font-sans text-sys-light-on-surface-variant leading-none bg-white w-fit">Course
               Name</label>
-            <input type="text" id="courseName"
+            <input type="text" id="course_name"name="course_name"
               class="border border-sys-light-on-surface-variant rounded-md focus:border-gray-500 focus:shadow-sm w-full p-3 h-fit font-sans bg-white"
               placeholder="Course Name" autocomplete="off" />
           </div>
@@ -38,7 +38,7 @@
           <div class="relative h-14 w-full">
             <label for="price"
               class="absolute -top-[5px] left-4 px-1 font-sans text-sys-light-on-surface-variant leading-none bg-white w-fit">Price</label>
-            <input type="number" id="price"
+            <input type="number" id="price" name="price"
               class="border border-sys-light-on-surface-variant rounded-md focus:border-gray-500 focus:shadow-sm w-full p-3 h-fit font-sans bg-white"
               placeholder="Price in Rupiah (0 - 1000000)" autocomplete="off" />
           </div>
@@ -48,7 +48,7 @@
             <div class="relative h-fit w-full">
               <label for="tags"
                 class="absolute -top-[5px] left-4 px-1 font-sans text-sys-light-on-surface-variant leading-none bg-white w-fit">Tags</label>
-              <textarea type="text" id="tags"
+              <textarea type="text" id="tags" name="tags"
                 class="border border-sys-light-on-surface-variant rounded-md focus:border-gray-500 focus:shadow-sm w-full p-3 h-[128px] resize-none font-sans bg-white"
                 placeholder="Tags" autocomplete="off"></textarea>
             </div>
@@ -56,7 +56,7 @@
             <div class="relative h-fit w-full">
               <label for="locations"
                 class="absolute -top-[5px] left-4 px-1 font-sans text-sys-light-on-surface-variant leading-none bg-white w-fit">Locations</label>
-              <textarea type="text" id="locations"
+              <textarea type="text" id="locations" name="locations"
                 class="border border-sys-light-on-surface-variant rounded-md focus:border-gray-500 focus:shadow-sm w-full p-3 h-[128px] resize-none font-sans bg-white"
                 placeholder="Locations" autocomplete="off"></textarea>
             </div>
@@ -87,7 +87,7 @@
           <h1 class='font-sans font-bold text-headline-md'>Course Details</h1>
           <!-- What you will learn -->
           <div class="relative h-fit w-full">
-            <label for="whatYouWillLearn"
+            <label id="what-you-will-learn" name="what-you-will-learn" for="whatYouWillLearn" 
               class="absolute -top-[5px] left-4 px-1 font-sans text-sys-light-on-surface-variant leading-none bg-white w-fit">What
               you will learn</label>
             <textarea type="text" id="whatYouWillLearn"
@@ -97,7 +97,7 @@
 
           <!-- Course Content -->
           <div class="relative h-fit w-full">
-            <label for="courseContent"
+            <label id="course-content" name="course-content" for="course-content"
               class="absolute -top-[5px] left-4 px-1 font-sans text-sys-light-on-surface-variant leading-none bg-white w-fit">Course
               Content</label>
             <textarea type="text" id="courseContent"
@@ -107,7 +107,7 @@
 
           <!-- Full Description -->
           <div class="relative h-fit w-full">
-            <label for="fullDescription"
+            <label id="description" name="description" for="description"
               class="absolute -top-[5px] left-4 px-1 font-sans text-sys-light-on-surface-variant leading-none bg-white w-fit">Full
               Description</label>
             <textarea type="text" id="description"

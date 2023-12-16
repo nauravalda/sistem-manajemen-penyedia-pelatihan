@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 use App\Models\CoursesModel;
-use App\Models\ImageModel;
+use App\Models\ScheduleModel;
 
 class Courses extends BaseController
 {
@@ -29,33 +29,34 @@ class Courses extends BaseController
 
     public function create()
     {
+        helper(['form']);
+
         // Getting user id from session
         $session = session();
         $user_id = $session->get('id');
 
         // Getting data from form
-        $name = $this->request->getPost('name');
+        $name = $this->request->getPost('course_name');
         $price = $this->request->getPost('price');
         $tags = $this->request->getPost('tags');
         $locations = $this->request->getPost('locations');
-        $what_you_will_learn = $this->request->getPost('what_you_will_learn');
-        $course_content = $this->request->getPost('course_content');
-        $desc = $this->request->getPost('desc');
+        $what_you_will_learn = $this->request->getVar('what_you_will_learn');
+        $course_content = $this->request->getVar('course_content');
+        $desc = $this->request->getVar('desc');
+        $image = $this->request->getFile('userfile');
 
-        // Getting image file and moving it to public/uploads/
-        $img = $this->request->getFile('image');
-        if ($img->getError() == 4) {
-            $imgName = 'default.png';
-        } else {
-            $imgName = $img->getRandomName();
-            $img->move('uploads', $imgName);
-        }
+        $newName = $image->getRandomName();
+        $image->move('./uploads', $newName);
 
-        // Creating data array
+
+
+        // Construct the image URL
+        $img_url = base_url('uploads/' . $newName);
+        
         $data = [
             'provider_id' => $user_id,
             'name' => $name,
-            'url_img' => $imgName,
+            'url_img' => $img_url,
             'what_you_will_learn' => $what_you_will_learn,
             'course_content' => $course_content,
             'desc' => $desc,
@@ -63,12 +64,13 @@ class Courses extends BaseController
             'tags' => $tags,
             'locations' => $locations,
         ];
-
+        
         // Creating new course and getting the id of the new course
-        $model = new CoursesModel();
-        $id = $model->createCourse($data);
+        $courseModel = new CoursesModel();
+        $id = $courseModel->createCourse($data);
 
         // Creating new schedule
+        $scheduleModel = new ScheduleModel();
         $dates = $this->request->getPost('dates');
         $times = $this->request->getPost('times');
         $repeatNums = $this->request->getPost('repeatNums');
@@ -78,11 +80,10 @@ class Courses extends BaseController
             $time = $times[$i];
             $repeatNum = $repeatNums[$i];
             $start = $date.' '.$time;
-            $model->createSchedule($id, $start, $repeatNum);
+            $scheduleModel->createSchedule($id, $start, $repeatNum);
         }
 
-        $this->session->setFlashdata('success','Course created successfully');
-        
+
         // Redirecting to the new course page
         return redirect()->to('/courses/'.$id);
     }

@@ -32,9 +32,15 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="w-96 h-40 justify-center items-center inline-flex">
-                            <img class="w-96 h-40" src="assets/Media.png" />
+                        <?php if ($courseItem['url_img'] != null) : ?>
+                        <div class="w-96 h-40  rounded-lg justify-center items-center inline-flex overflow-hidden">
+                            <img class="w-full h-auto" src="<?= $courseItem['url_img']; ?>" />
                         </div>
+                        <?php else : ?>
+                        <div class="w-96 h-40  rounded-lg justify-center items-center inline-flex overflow-hidden">
+                            <img class="w-full h-auto" src="assets/Media.png" />
+                        </div>
+                        <?php endif ?>
                         <div class="self-stretch h-60 p-4 flex-col justify-start items-start gap-8 flex">
                             <div class="self-stretch h-36 flex-col justify-start items-start gap-3 flex">
                                 <div class="self-stretch h-11 flex-col justify-start items-start flex">

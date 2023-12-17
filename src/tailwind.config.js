@@ -192,8 +192,8 @@ module.exports = {
         'headline-md' : '1.8rem',
         'headline-lg' : '2rem',
         'display-sm' : '2rem',
-        'display-md' : '3rem',
-        'display-lg' : '4rem',
+        'display-md' : '2.5rem',
+        'display-lg' : '3rem',
       },
       fontWeight: {
         'light': 300,

@@ -103,10 +103,13 @@ class Courses extends BaseController
 
         $scheduleModel = new ScheduleModel();
         $data['course'] = $courseModel->getDataCourseById($id)[0];
-        $data['schedule'] = $scheduleModel->getCourseSchedule($id, 4);
-
+        $data['schedule'] = [
+            'day' => $scheduleModel->getCourseSchedule($id, 3),
+            'repetition' => $scheduleModel->getCourseScheduleRepetitions($id),
+        ];
 
         return view('navbar').view('courses-detail', $data).view('footer');
+        // return $this->response->setJSON($data);
     }
 
     public function edit(int $id)

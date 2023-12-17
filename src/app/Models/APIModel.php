@@ -29,10 +29,41 @@ class APIModel extends Model
     }
 
     // get schedule by list 
-    public function getCourseScheduleDay($id)
+    public function getCourseScheduleRepetitions($id)
     {
-        $today = date('Y-m-d');
-        $query = $this->db->query("SELECT DAYNAME(datetime) AS date, DATE_FORMAT(datetime, '%H:%i') AS time, COUNT(*) AS repetition FROM schedule WHERE course_id = $id GROUP BY date, time ORDER BY datetime ASC");
-        return $query->getResultArray();
+        // selecting all schedule  by a course_id
+        $data = $this->db->table($this->scheduleTable)->where("course_id", $id)->get()->getResultArray();
+
+        $result = [];
+        foreach ($data as $item) {
+            $datetime = new \DateTime($item['datetime']);
+
+            $inserted = false;
+            foreach ($result as &$group) {
+                if ($datetime->diff(new \DateTime($group['start_date']))->days == 7 || $datetime->diff(new \DateTime($group['end_date']))->days == 7) {
+                    $group['repetition']++;
+                    $inserted = true;
+                    if ($datetime < new \DateTime($group['start_date'])) {
+                        $group['start_date'] = $datetime->format('Y-m-d');
+                    } else if ($datetime > new \DateTime($group['end_date'])) {
+                        $group['end_date'] = $datetime->format('Y-m-d');
+                    }
+                    break;
+                }
+            }
+
+            if (!$inserted) {
+                $newGroup = [
+                    'day' => $datetime->format('l'), // Day in text
+                    'time' => $datetime->format('H:i:s'), // Time
+                    'start_date' => $datetime->format('Y-m-d'), // Start date
+                    'end_date' => $datetime->format('Y-m-d'), // End date
+                    'repetition' => 1, // Initial count
+                ];
+                $result[] = $newGroup;
+            }
+        }
+
+        return $result;
     }
 }

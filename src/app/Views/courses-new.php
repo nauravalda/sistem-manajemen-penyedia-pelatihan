@@ -119,8 +119,8 @@
 
         <!-- Save -->
         <div class='flex flex-row gap-12 w-full justify-end'>
-          <button onclick="window.location.href='/courses'"
-            class='outline outline-1 outline-sys-light-outline-variant hover:bg-sys-light-surface hover:text-sys-light-on-surface-variant font-medium h-fit px-8 py-2.5 rounded-full'>Cancel</button>
+          <a href="/courses"
+            class='outline outline-1 outline-sys-light-outline-variant hover:bg-sys-light-surface hover:text-sys-light-on-surface-variant font-medium h-fit px-8 py-2.5 rounded-full'>Cancel</a>
           <!-- <button id="submitButton" type="submit"
             class='bg-sys-light-primary hover:bg-ref-primary-primary30 text-sys-light-on-primary font-medium h-fit px-8 py-2.5 rounded-full'>Save</button> -->
           <button id="submitButton" type="submit"

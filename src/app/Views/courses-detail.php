@@ -1,4 +1,4 @@
-<div class="pl-24 h-full w-full p-16 py-10 flex-col justify-start items-center gap-6 inline-flex">
+<div class="h-full miin-h-screen w-full p-20 py-10 flex-col justify-center items-center gap-6 inline-flex">
   <div class="self-stretch h-10 flex-col justify-center items-start gap-6 flex">
     <a class="w-20 rounded-full flex-col justify-center items-center gap-3 flex"href="/courses">
       <div class="self-stretch grow shrink basis-0 pl-3 pr-4 py-2.5 justify-center items-center gap-2 inline-flex">
@@ -149,12 +149,19 @@
     <span style="text-zinc-700 text-base font-normal leading-normal tracking-wide">
         <?php
         // Memecah string berdasarkan nomor urutan
+        
         $parts = preg_split('/(\d+\. )/', $course['course_content'], -1, PREG_SPLIT_NO_EMPTY | PREG_SPLIT_DELIM_CAPTURE);
+        
 
 // Menampilkan setiap elemen dalam format HTML dengan nomor urutan
 echo '<ol>';
-for ($i = 0; $i < count($parts); $i += 2) {
-    echo '<li>' . $parts[$i] . $parts[$i + 1] . '</li>';
+
+if (count($parts) === 0 || $parts[0] !== '1. ' || count($parts) === 1) {
+  echo '<li>' . $course['course_content'] . '</li>';
+} else {
+  for ($i = 0; $i < count($parts); $i += 2) {
+      echo '<li>' . $parts[$i] . $parts[$i + 1] . '</li>';
+  }
 }
 echo '</ol>';
         ?>

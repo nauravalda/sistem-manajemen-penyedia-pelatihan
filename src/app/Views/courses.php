@@ -13,13 +13,13 @@
 
 <body>
 
-    <div class="w-full h-fit p-16 px-24 flex-col justify-start items-start gap-6 ">
+    <div class="w-full h-full min-h-screen p-16 px-24 flex-col justify-start items-start gap-6 ">
         <div class="text-black text-4xl font-bold mx-6 leading-10">Your Course</div>
 
 
 
         <?php if (!empty($course) && is_array($course)) : ?>
-            <div class="grid grid-cols-3 justify-evenly mx-6 my-10 py-4 gap-9">
+            <div class="flex flex-wrap lg:flex-no-wrap justify-start mx-6 my-10 py-4 gap-9">
                 <?php foreach ($course as $courseItem) : ?>
                     <div class="w-96 h-full bg-fuchsia-50 rounded-xl justify-start items-start inline-flex">
                         <div class="w-96 h-full rounded-xl border border-stone-300 flex-col justify-center items-center inline-flex">

@@ -94,7 +94,19 @@ class Courses extends BaseController
         if (!$session->get('isLoggedIn')) {
             return redirect()->to('/login');
         }
-        return view('navbar').view('courses-detail', ['id' => $id]).view('footer');
+        $courseModel = new CoursesModel();
+        $course = $courseModel->getDataCourseById($id)[0];
+        if ($course['provider_id'] != $session->get('id')) {
+            return redirect()->to('/courses');
+        }
+
+
+        $scheduleModel = new ScheduleModel();
+        $data['course'] = $courseModel->getDataCourseById($id)[0];
+        $data['schedule'] = $scheduleModel->getCourseSchedule($id, 4);
+
+
+        return view('navbar').view('courses-detail', $data).view('footer');
     }
 
     public function edit(int $id)

@@ -18,7 +18,7 @@
         <div class="self-stretch text-black text-3xl font-bold leading-9"><?= $course['name']; ?></div>
         <div class="rounded-lg border border-stone-300 justify-center items-center inline-flex">
           <div class="w-36 px-4 py-1.5 justify-center items-center gap-2 flex">
-            <div class="text-center text-slate-500 text-sm font-medium  leading-tight tracking-tight">Rp <?= number_format($course['price'],0,',','.'); ?></div>
+            <div class="text-center text-light-primary text-base  font-medium  leading-tight tracking-normal">Rp <?= number_format($course['price'],0,',','.'); ?></div>
           </div>
         </div>
         <div class="self-stretch text-zinc-700 text-base font-normal  leading-normal tracking-wide"><?= $course['desc']; ?></div>

@@ -48,7 +48,7 @@
                                         </div>
                                         <div class="rounded-lg border border-stone-300 justify-center items-center inline-flex">
                                             <div class="w-fit px-4 py-1.5 justify-center items-center gap-2 flex">
-                                                <div class="text-center text-light-primary text-sm font-sans font-medium  leading-tight tracking-tight">Rp <?= $courseItem['price'] ?></div>
+                                                <div class="text-center text-light-primary text-sm  font-medium  leading-tight tracking-tight">Rp <?= number_format($courseItem['price'],0,',','.'); ?></div>
                                             </div>
                                         </div>
                                         <div class="self-stretch line-clamp-2 text-zinc-700 text-sm font-sans font-normal  leading-tight tracking-tight"><?= $courseItem['desc'] ?></div>

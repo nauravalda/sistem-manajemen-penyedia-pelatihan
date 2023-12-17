@@ -8,7 +8,7 @@ class Course extends Migration
 {
     public function up()
     {
-        $this->db->disableForeignKeyChecks();
+        $this->db->query('SET foreign_key_checks = 0');
 
         $this->forge->addField([
             'id' => [
@@ -57,11 +57,13 @@ class Course extends Migration
         $this->forge->addKey('id', true);
         $this->forge->createTable('course');
         $this->forge->addForeignKey('provider_id', 'user', 'id', 'CASCADE', 'CASCADE');
-        $this->db->enableForeignKeyChecks();
+        $this->db->query('SET foreign_key_checks = 1');
     }
 
     public function down()
     {
+        $this->db->query('SET foreign_key_checks = 0');
         $this->forge->dropTable('course');
+        $this->db->query('SET foreign_key_checks = 1');
     }
 }

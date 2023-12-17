@@ -8,6 +8,7 @@ class User extends Migration
 {
     public function up()
     {
+        echo "Migrating User";
         $this->forge->addField([
             'id' => [
                 'type' => 'INT',

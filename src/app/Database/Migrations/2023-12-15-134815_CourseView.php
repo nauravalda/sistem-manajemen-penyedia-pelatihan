@@ -29,7 +29,7 @@ class CourseView extends Migration
         
         $this->db->query($sql);
     }
-
+ 
     public function down()
     {
         $this->db->query("DROP VIEW view_courses");

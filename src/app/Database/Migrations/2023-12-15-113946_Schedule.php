@@ -8,7 +8,7 @@ class Schedule extends Migration
 {
     public function up()
     {
-        $this->db->disableForeignKeyChecks();
+        $this->db->query('SET foreign_key_checks = 0');
 
         $this->forge->addField([
             'course_id' => [
@@ -23,11 +23,12 @@ class Schedule extends Migration
 
         $this->forge->createTable('schedule');
 
-        $this->db->enableForeignKeyChecks();
+        $this->db->query('SET foreign_key_checks = 1');
     }
 
     public function down()
     {
+        
         $this->forge->dropTable('schedule');
     }
 }

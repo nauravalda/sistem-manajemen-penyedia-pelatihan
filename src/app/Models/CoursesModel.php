@@ -45,9 +45,18 @@ class CoursesModel extends Model
       // deleting image from uploads folder
       $course = $this->db->table('course')->where(['id' => $id])->get()->getResultArray();
       $img_url = $course[0]['url_img'];
-      $img_name = explode('/', $img_url);
-      $img_name = $img_name[count($img_name) - 1];
-      unlink('./uploads/' . $img_name);
+
+      if ($img_url == null) {
+         try {
+            $img_name = explode('/', $img_url);
+            $img_name = $img_name[count($img_name) - 1];
+            unlink('./uploads/' . $img_name);
+         } catch (\Throwable $th) {
+            //throw $th;
+         }
+      }
+
+      log_message('debug', 'Image deleted: ' . $img_url);
       
       // deleting course from database
       $this->db->table('course')->delete(['id' => $id]);

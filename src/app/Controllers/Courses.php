@@ -3,6 +3,7 @@
 namespace App\Controllers;
 use App\Models\CoursesModel;
 use App\Models\ScheduleModel;
+use CodeIgniter\CLI\Console;
 
 class Courses extends BaseController
 {
@@ -45,13 +46,18 @@ class Courses extends BaseController
         $desc = $this->request->getPost('desc');
         $image = $this->request->getFile('userfile');
 
-        $newName = $image->getRandomName();
-        $image->move('./uploads', $newName);
+        // Checking if there is an image
+        if (!$image->isValid()) {
+            // if its not valid, save with url_img = null
+            $img_url = null;
+        } else {
+            // if its valid, save the image
+            $img_url = $image->getRandomName();
+            $image->move('./uploads', $img_url);
 
-
-
-        // Construct the image URL
-        $img_url = base_url('uploads/' . $newName);
+            // Construct the image URL
+            $img_url = base_url('uploads/' . $img_url);
+        }
         
         $data = [
             'provider_id' => $user_id,
@@ -153,6 +159,17 @@ class Courses extends BaseController
         
         // checking if the image is updated
         if ($this->request->getFile('userfile')->getName() != '') {
+            // deleting the old image
+            $courseModel = new CoursesModel();
+            $old_img_url = $courseModel->getDataCourseById($id)[0]['url_img'];
+            if ($old_img_url != null) {
+                try {
+                    unlink($old_img_url);
+                } catch (\Throwable $th) {
+                    //throw $th;
+                }
+            }
+
             $image = $this->request->getFile('userfile');
             $newName = $image->getRandomName();
             $image->move('./uploads', $newName);
@@ -214,6 +231,9 @@ class Courses extends BaseController
         if ($course['provider_id'] != $session->get('id')) {
             return redirect()->to('/courses');
         }
+
+        // loggin the deletion
+        log_message('debug', 'Course deleted: ' . $course['name']);
 
         $courseModel->deleteCourse($id);
         return redirect()->to('/courses');

@@ -4,12 +4,23 @@
       <div class="container">
         <div class=" min-h-screen container h-full">
           <div class="flex flex-col gap-24">
-            <form id="newCourseForm" action="/courses/<?= $course['id']; ?>/edit" method="post" enctype="multipart/form-data">
+            <form id="editCourseForm" action="/courses/<?= $course['id']; ?>/edit" method="post" enctype="multipart/form-data">
               <div class='flex flex-col my-5 gap-24 justify-end'>
                 <!-- Image Header Input -->
                 <div
                   class='flex flex flex-col w-full h-fit gap-3 outline outline-1 outline-sys-light-outline-variant p-[48px] rounded-medium'>
                   <h1 class='font-sans font-bold text-headline-md leading-loose'>Image Header</h1>
+                  <!-- Opening old image if there is any -->
+                  <?php if ($course['url_img'] !== null) : ?>
+                    <div class="w-full h-40 rounded-2xl justify-center items-center inline-flex overflow-hidden">
+                      <img src="<?= $course['url_img']; ?>" alt="Image Header" class="w-full h-auto">
+                    </div>
+                  <?php else : ?>
+                    <div class="w-full h-40 justify-center items-center inline-flex overflow-hidden bg-sys-light-surface  outline outline-1 outline-sys-light-outline-variant rounded-2xl">
+                      There is no image header yet.
+                    </div>
+                  <?php endif; ?>
+                    
                   <div class="relative h-14 w-full">
                     <label for="image"
                       class="absolute -top-[5px] left-4 px-1 font-sans text-sys-light-on-surface-variant leading-none bg-white w-fit">Image</label>
@@ -152,11 +163,11 @@
 
                 <!-- Save -->
                 <div class='flex flex-row gap-12 w-full justify-end'>
-                  <button onclick="window.location.href='/courses/<?= $course['id']; ?>/delete'"
+                  <button type="button" onclick="onDelete()"
                     class="bg-sys-light-error hover:bg-ref-error-error30 text-sys-light-on-error font-medium h-fit px-8 py-2.5 rounded-full">Delete</button>
-                  <button onclick="window.location.href='/courses'"
+                  <button type="button" onclick="onCancel()"
                     class='outline outline-1 outline-sys-light-outline-variant hover:bg-sys-light-surface hover:text-sys-light-on-surface-variant font-medium h-fit px-8 py-2.5 rounded-full'>Cancel</button>
-                  <button id="submitButton" type="submit"
+                  <button type="button" onclick="onSave()"  
                     class='bg-sys-light-primary hover:bg-ref-primary-primary30 text-sys-light-on-primary font-medium h-fit px-8 py-2.5 rounded-full disabled:opacity-50 disabled:cursor-not-allowed'>Save</button>
                 </div>
 
@@ -168,6 +179,34 @@
     </section>
   </div>
 </body>
+
+<!-- Confirmation modal -->
+<div id="confirmationModal" class="fixed z-10 inset-0 overflow-y-auto hidden">
+  <div class="fixed inset-0 bg-black bg-opacity-20" id="confirmationModalBackdrop"
+    onclick="closeModal()"></div>
+  <div class="flex items-center justify-center min-h-screen">
+    <div class="bg-white rounded-lg overflow-hidden shadow-xl transform transition-all sm:w-full sm:max-w-xl">
+      <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+        <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+          <h3 class="text-lg leading-6 font-medium" id="modalTitle">$modalTitle</h3>
+          <div class="mt-2">
+            <p class="text-sm" id="modalText">$modalText</p>
+          </div>
+        </div>
+      </div>
+      <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse gap-12">
+        <button id="confirmationButton" type="button" onclick="modalAction()"
+          class="font-medium h-fit px-8 py-2.5 rounded-full">
+          <!-- Button text will be updated dynamically -->
+        </button>
+        <button onclick="closeModal()" type="button"
+          class="outline outline-1 outline-sys-light-outline-variant hover:bg-sys-light-surface hover:text-sys-light-on-surface-variant font-medium h-fit px-8 py-2.5 rounded-full">
+          Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <script>
 
@@ -226,27 +265,79 @@
 
     // Append the schedule entry to the schedule entries section
     scheduleEntries.appendChild(scheduleEntry);
-
-    validateSchedule();
   }
 
-  // Function to validate schedule entries for enabling/disabling the submit button
-  function validateSchedule() {
-    var dates = document.getElementsByName('dates[]');
-    var submitButton = document.getElementById('submitButton');
-    var allEmpty = true;
+  function openModal(title, text, buttonType, buttonText) {
+    document.getElementById('modalTitle').innerText = title;
+    document.getElementById('modalText').innerText = text;
+    var confirmationButton = document.getElementById('confirmationButton');
+    confirmationButton.innerText = buttonText;
 
-    // for (var i = 0; i < dates.length; i++) {
-    //     if (dates[i].value.trim() !== '') {
-    //         allEmpty = false;
-    //         break;
-    //     }
-    // }
+    if (buttonType === 'delete') {
+      confirmationButton.classList.add('bg-sys-light-error', 'hover:bg-ref-error-error30', 'text-sys-light-on-error');
+    } else if (buttonType === 'save') {
+      confirmationButton.classList.add('bg-sys-light-primary', 'hover:bg-ref-primary-primary30', 'text-sys-light-on-primary');
+    } else if (buttonType === 'cancel') {
+      confirmationButton.classList.add('bg-red-600', 'hover:bg-red-700', 'text-white');
+    }
 
-    // // checking if all input fields filled
-    // var inputs = document.querySelectorAll('input[type="text"], input[type="number"], input[type="date"], input[type="time"], textarea');
-    // var isFilled = Array.from(inputs).every(input => input.value.trim() !== '');
-
-    // submitButton.disabled = allEmpty || !isFilled;
+    document.getElementById('confirmationModal').classList.remove('hidden');
   }
+
+  function closeModal() {
+    document.getElementById('confirmationModal').classList.add('hidden');
+    var confirmationButton = document.getElementById('confirmationButton');
+    confirmationButton.classList.remove('bg-sys-light-error', 'hover:bg-ref-error-error30', 'text-sys-light-on-error');
+    confirmationButton.classList.remove('bg-sys-light-primary', 'hover:bg-ref-primary-primary30', 'text-sys-light-on-primary');
+  }
+
+  function modalAction() {
+    var confirmationButton = document.getElementById('confirmationButton');
+    if (confirmationButton.innerText === 'Delete') {
+      window.location.href = '/courses/<?= $course['id']; ?>/delete';
+    } else if (confirmationButton.innerText === 'Save') {
+      document.getElementById('editCourseForm').submit();
+    } else if (confirmationButton.innerText === 'Go Back') {
+      window.location.href = '/courses';
+    }
+  }
+
+  function onSave() {
+    // check if there is an empty input
+    var form = document.getElementById("editCourseForm");
+    var inputs = form.querySelectorAll("input, textarea");
+
+    for (var i = 0; i < inputs.length; i++) {
+      var inputType = inputs[i].type.toLowerCase();
+      if (
+        (inputType === "text" || inputType === "number" || inputType === "date" || inputType === "time" || inputs[i].nodeName.toLowerCase() === "textarea") &&
+        inputs[i].value.trim() === ""
+      ) {
+        inputs[i].scrollIntoView({ behavior: "smooth", block: "center" });
+        inputs[i].focus();
+        return;
+      }
+    }
+
+    // check if there is at least one schedule entry
+    var scheduleEntries = document.getElementById('scheduleEntries');
+    var scheduleEntry = scheduleEntries.lastElementChild;
+    if (scheduleEntry === null) {
+      var scheduleAddButton = document.getElementById('scheduleAddButton');
+      scheduleAddButton.scrollIntoView({ behavior: "smooth", block: "center" });
+      return;
+    }
+
+    // open confirmation modal
+    openModal('Simpan?', 'Apakah Anda yakin ingin membuat kursus ini?', 'save', 'Save');
+  }
+
+  function onDelete() {
+    openModal('Hapus?', 'Apakah Anda yakin ingin menghapus kursus ini?', 'delete', 'Delete');
+  }
+
+  function onCancel() {
+    openModal('Batalkan?', 'Apakah Anda yakin ingin membatalkan perubahan?', 'cancel', 'Go Back');
+  }
+    
 </script>

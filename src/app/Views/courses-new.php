@@ -19,7 +19,7 @@
                     file:text-sm file:font-sans file:font-medium file:text-sys-dark-on-primary
                     file:bg-sys-dark-primary file:outline-none file:cursor-pointer file:shadow-sm file:transition-colors file:duration-200 file:ease-in-out
                     file:placeholder-sys-dark-on-primary file:placeholder-opacity-50 file:placeholder-shown:opacity-100 file:placeholder-shown:transition-opacity file:placeholder-shown:duration-200 file:placeholder-shown:ease-in-out
-                    file:hover:bg-ref-primary-primary70" placeholder="Image" autocomplete="off" />
+                    file:hover:bg-ref-primary-primary70" placeholder="Image" autocomplete="off" accept="image/*" />
                   </div>
                 </div>
 

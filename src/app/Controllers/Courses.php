@@ -156,9 +156,12 @@ class Courses extends BaseController
         $what_you_will_learn = $this->request->getPost('what_you_will_learn');
         $course_content = $this->request->getPost('course_content');
         $desc = $this->request->getPost('desc');
+
+        $data = [];
         
         // checking if the image is updated
-        if ($this->request->getFile('userfile')->getName() != '') {
+        if ($this->request->getFile('userfile')->isValid()) {
+            log_message('debug', 'There is an image');
             // deleting the old image
             $courseModel = new CoursesModel();
             $old_img_url = $courseModel->getDataCourseById($id)[0]['url_img'];
@@ -176,21 +179,36 @@ class Courses extends BaseController
             // Construct the image URL
             $img_url = base_url('uploads/' . $newName);
             $data = [
+                'provider_id' => $user_id,
+                'name' => $name,
                 'url_img' => $img_url,
+                'what_you_will_learn' => $what_you_will_learn,
+                'course_content' => $course_content,
+                'desc' => $desc,
+                'price' => $price,
+                'tags' => $tags,
+                'locations' => $locations,
             ];
+        
+            // Updating course
+            $courseModel = new CoursesModel();
+            $courseModel->updateCourse($id, $data);        
         } else {
-            $data = [];
+            log_message('debug', 'There is no image');
+            $data = [
+                'provider_id' => $user_id,
+                'name' => $name,
+                'url_img'=> null,
+                'what_you_will_learn' => $what_you_will_learn,
+                'course_content' => $course_content,
+                'desc' => $desc,
+                'price' => $price,
+                'tags' => $tags,
+                'locations' => $locations,
+            ];
         }
 
-        $data = [
-            'name' => $name,
-            'what_you_will_learn' => $what_you_will_learn,
-            'course_content' => $course_content,
-            'desc' => $desc,
-            'price' => $price,
-            'tags' => $tags,
-            'locations' => $locations,
-        ];
+        log_message('debug', 'Data: ' . json_encode($data));
 
         // Updating course
         $courseModel = new CoursesModel();

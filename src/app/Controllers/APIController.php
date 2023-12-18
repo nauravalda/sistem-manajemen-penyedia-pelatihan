@@ -6,10 +6,37 @@ use App\Models\UserModel;
 
 class APIController extends BaseController
 {
-    public function courses($email, $password)
+    public function request_token()
+    {
+        // get session
+        $session = session();
+
+        // if user is logged in
+        if ($session->get('isLoggedIn')) {    
+            // get user data
+            $user = new UserModel();
+
+            // generate token based on time and user id
+            $token = hash('sha256', time() . $session->get('id'));
+            log_message('info', 'User ' . $session->get('name') . ' requested token');
+            log_message('info', 'Token generated: ' . $token);
+
+            
+            // update user data with token
+            $user->update($session->get('id'), ['api_token' => $token]);
+
+            return $this->response->setJSON($token);
+        } else {
+            return redirect()->to('/login');
+        }
+
+    }
+
+    public function courses($apiKey)
     {
         $user = new UserModel();
-        if ($user->checkUser($email, hash('sha256', $password))) {
+        $user = $user->getUserByToken($apiKey);
+        if ($user) {
             $model = new APIModel();
             $data = [
                 'message' => 'success',
@@ -29,10 +56,11 @@ class APIController extends BaseController
         }
     }
 
-    public function course($email, $password, $id)
+    public function course($id, $apiKey)
     {
         $user = new UserModel();
-        if (!$user->checkUser($email, hash('sha256', $password))) {
+        $user = $user->getUserByToken($apiKey);
+        if (!$user) {
             $data = [
                 'message' => 'failed',
                 'data' => [
@@ -53,10 +81,11 @@ class APIController extends BaseController
         }
     }
 
-    public function schedule($email, $password, $id)
+    public function schedule($id, $apiKey)
     {
         $user = new UserModel();
-        if (!$user->checkUser($email, hash('sha256', $password))) {
+        $user = $user->getUserByToken($apiKey);
+        if (!$user) {
             $data = [
                 'message' => 'failed',
                 'data' => [
@@ -77,10 +106,11 @@ class APIController extends BaseController
         }
     }
 
-    public function schedule_day($email, $password, $id)
+    public function schedule_day($id, $apiKey)
     {
         $user = new UserModel();
-        if (!$user->checkUser($email, hash('sha256', $password))) {
+        $user = $user->getUserByToken($apiKey);
+        if (!$user) {
             $data = [
                 'message' => 'failed',
                 'data' => [

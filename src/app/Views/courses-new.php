@@ -193,6 +193,7 @@
     var repeatInput = document.createElement('input');
     repeatInput.type = 'number';
     repeatInput.name = 'repeatNums[]';
+    repeatInput.placeholder = 'Repeat weekly for...';
     repeatInput.classList.add('h-14', 'border', 'border-sys-light-on-surface-variant', 'rounded-md', 'focus:border-gray-500', 'focus:shadow-sm', 'w-full', 'p-3', 'h-full', 'resize-none', 'font-sans', 'bg-sys-light-surface', 'mr-2');
     repeatInput.placeholder = 'Put in lots of meetings';
 

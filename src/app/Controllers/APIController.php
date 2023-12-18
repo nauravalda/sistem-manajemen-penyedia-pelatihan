@@ -104,7 +104,8 @@ class APIController extends BaseController
             $data = [
                 'message' => 'failed',
                 'data' => [
-                    'course' => []
+                    'course' => [],
+                    'schedule' => []
                 ]
                 ];
             return $this->response->setJSON($data);
@@ -114,14 +115,18 @@ class APIController extends BaseController
             $data = [
                 'message' => 'success',
                 'data' => [
-                    'course' => $model->getDataCourseById($parameterArray)
+                    'course' => $model->getDataCourseById($parameterArray)[0],
+                    'schedule' => [
+                        'day' => $model->getCourseSchedule($parameterArray, 3),
+                        'repetition' => $model->getCourseScheduleRepetitions($parameterArray),
+                    ]
                 ]
                 ];
             return $this->response->setJSON($data);
         }
     }
 
-    public function schedule()
+    public function schedule($day)
     {
         $request = service('request');
         $id = $request->getVar('id');
@@ -143,35 +148,7 @@ class APIController extends BaseController
             $data = [
                 'message' => 'success',
                 'data' => [
-                    'schedule' => $model->getDataScheduleByCourseId($parameterArray)
-                ]
-                ];
-            return $this->response->setJSON($data);
-        }
-    }
-
-    public function schedule_day()
-    {
-        $request = service('request');
-        $id = $request->getVar('id');
-        $apiKey = $request->getVar('apiKey');
-
-        $user = new UserModel();
-        $user = $user->getUserByToken($apiKey);
-        if (!$user) {
-            $data = [
-                'message' => 'failed',
-                'data' => [
-                    'schedule_day' => []
-                ]
-                ];
-            return $this->response->setJSON($data);
-        } else {
-            $model = new APIModel();
-            $data = [
-                'message' => 'success',
-                'data' => [
-                    'schedule_day' => $model->getCourseScheduleRepetitions($id)
+                    'schedule' => $model->getDataScheduleByCourseId($parameterArray, $day)
                 ]
                 ];
             return $this->response->setJSON($data);

@@ -22,10 +22,23 @@ class APIModel extends Model
         return $this->db->table($this->viewTable)->whereIn('id', $id)->get()->getResultArray();
     }
 
-    // get schedule by list of course id
-    public function getDataScheduleByCourseId($id)
+    // getting course schedule with specific id where the date is greater than today, group by date, and limiting the number of date to num_day
+    public function getCourseSchedule($id, $num_day)
     {
-        return $this->db->table($this->scheduleTable)->whereIn('course_id', $id)->get()->getResultArray();
+        $id = implode(',', $id);
+        log_message('info', 'Course id: ' . $id[0]);
+        $today = date('Y-m-d');
+        $query = $this->db->query("SELECT * FROM schedule WHERE course_id IN ($id) AND datetime >= '$today' GROUP BY datetime LIMIT $num_day");
+        return $query->getResultArray();
+    }
+
+    // get schedule by list of course id
+    public function getDataScheduleByCourseId($id, $num_day)
+    {
+        // converting into list of course id
+        $id = explode(',', $id);
+        $today = date('Y-m-d');
+        return $this->db->query("SELECT DATE_FORMAT(datetime, '%d %M %Y') AS date, DATE_FORMAT(datetime, '%H:%i') AS time, name, locations, FROM schedule JOIN course ON schedule.course_id = course.id WHERE course_id IN ($id) AND datetime >= '$today' GROUP BY date LIMIT $num_day")->getResultArray();
     }
 
     // get schedule by list 

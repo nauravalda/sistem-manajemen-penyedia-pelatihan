@@ -37,5 +37,4 @@ $routes->get('/api/request', 'APIController::request_token');
 $routes->get('/api/courses', 'APIController::courses');
 $routes->get('/api/courses/search', 'APIController::search_courses');
 $routes->get('/api/course', 'APIController::course');
-$routes->get('/api/schedule', 'APIController::schedule');
-$routes->get('/api/schedule/day', 'APIController::schedule_day');
+$routes->get('/api/schedule/(:num)', 'APIController::schedule/$1');

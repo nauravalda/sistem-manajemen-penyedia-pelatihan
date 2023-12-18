@@ -194,11 +194,14 @@ class Courses extends BaseController
             $courseModel = new CoursesModel();
             $courseModel->updateCourse($id, $data);        
         } else {
+            // getting the old image url
+            $courseModel = new CoursesModel();
+            $old_img_url = $courseModel->getDataCourseById($id)[0]['url_img'];
             log_message('debug', 'There is no image');
             $data = [
                 'provider_id' => $user_id,
                 'name' => $name,
-                'url_img'=> null,
+                'url_img' => $old_img_url,
                 'what_you_will_learn' => $what_you_will_learn,
                 'course_content' => $course_content,
                 'desc' => $desc,

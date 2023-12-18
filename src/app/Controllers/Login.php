@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controllers;
+use App\Models\UserModel;
 
 class Login extends BaseController
 {
@@ -18,9 +19,10 @@ class Login extends BaseController
         $email = $this->request->getPost('email');
         $password = hash('sha256', $this->request->getPost('password'));
 
-        $userModel = new \App\Models\UserModel();
-        $user = $userModel->getUserByEmailAndPassword($email, $password);
+        $userModel = new UserModel();
 
+        $user = $userModel->getUserByEmailAndPassword($email, $password);
+        
         if ($user) {
             $session = session();
             $session->set([

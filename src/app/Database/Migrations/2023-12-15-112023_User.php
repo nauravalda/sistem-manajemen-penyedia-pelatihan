@@ -28,6 +28,10 @@ class User extends Migration
             'password' => [
                 'type' => 'TEXT',
             ],
+            'api_token' => [
+                'type' => 'TEXT',
+                'null' => true,
+            ],
         ]);
 
         $this->forge->addKey('id', true);

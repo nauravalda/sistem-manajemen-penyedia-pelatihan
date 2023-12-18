@@ -6,7 +6,7 @@ use CodeIgniter\Model;
 class UserModel extends Model
 {
     protected $table = 'user';
-    protected $allowedFields = ['name', 'email', 'phone', 'password'];
+    protected $allowedFields = ['name', 'email', 'phone', 'password', 'api_token'];
 
     public function checkUser($email, $password)
     {
@@ -36,5 +36,10 @@ class UserModel extends Model
     public function getUserByEmailAndPassword($email, $password)
     {
         return $this->where(['email' => $email, 'password' => $password])->first();
+    }
+
+    public function getUserByToken($token)
+    {
+        return $this->where(['api_token' => $token])->first();
     }
 }

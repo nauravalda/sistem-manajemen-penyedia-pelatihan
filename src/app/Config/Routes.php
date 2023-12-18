@@ -33,7 +33,8 @@ $routes->get('/schedule', function() {
 $routes->get('/schedule/(:num)', 'Schedule::index/$1');
 
 // API routes
-$routes->get('/api/courses/(:any)/(:any)', 'APIController::courses/$1/$2');
-$routes->get('/api/course/(:any)/(:any)/(:any)', 'APIController::course/$1/$2/$3');
-$routes->get('/api/schedule/(:any)/(:any)/(:num)/(:any)', 'APIController::schedule/$1/$2/$3/$4');
-$routes->get('/api/schedule_day/(:any)/(:any)/(:num)', 'APIController::schedule_day/$1/$2/$3');
+$routes->get('/api/request', 'APIController::request_token');
+$routes->get('/api/courses/apiKey=(:any)', 'APIController::courses/$1');
+$routes->get('/api/course/(:num)/apiKey=(:any)', 'APIController::course/$1/$2');
+$routes->get('/api/schedule/(:any)/apiKey=(:any)', 'APIController::schedule/$1/$2');
+$routes->get('/api/schedule_day/(:any)/apiKey=(:any)', 'APIController::schedule_day/$1/$2');

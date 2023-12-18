@@ -15,12 +15,7 @@ class CourseSeeder extends Seeder
                 'name' => 'The Complete Python Bootcamp From Zero to Hero in Python',
                 'url_img' => NULL,
                 'what_you_will_learn' => 'Python fundamentals, data structures, OOP concepts, web development with Django, etc.',
-                'course_content' => '1. Introduction to Python
-                             2. Data Structures
-                             3. Object-Oriented Programming
-                             4. Web Development with Django
-                             5. Scientific Computing with NumPy
-                             6. Data Visualization with Matplotlib',
+                'course_content' => '1. Introduction to Python\r\n2. Data Structures\r\n3. Object-Oriented Programming\r\n4. Web Development with Django\r\n5. Scientific Computing with NumPy\r\n6. Data Visualization with Matplotlib',
                 'desc' => 'Learn Python like a Professional Start from the basics and go all the way to creating your own applications and games',
                 'price' => 50000,
                 'tags' => '#PythonBootcamp #PythonProgramming #LearnPython #CodingBootcamp #ProgrammingCourse',
@@ -32,9 +27,7 @@ class CourseSeeder extends Seeder
                 'name' => 'Full Stack Developer Bootcamp',
                 'url_img' => NULL,
                 'what_you_will_learn' => 'HTML, CSS, JavaScript, React, Node.js, MongoDB, etc.',
-                'course_content' => '1. Front-End Development
-                             2. Back-End Development
-                             3. Full Stack Development',
+                'course_content' => '1. Front-End Development\r\n2. Back-End Development\r\n3. Full Stack Development',
                 'desc' => 'Intensive bootcamp covering front-end and back-end development.',
                 'price' => 150000,
                 'tags' => 'Full Stack, Web Development, Coding',
@@ -46,10 +39,7 @@ class CourseSeeder extends Seeder
                 'name' => 'Data Science Bootcamp',
                 'url_img' => NULL,
                 'what_you_will_learn' => 'Data analysis, machine learning, data visualization, etc.',
-                'course_content' => '1. Introduction to Data Science
-                             2. Data Analysis
-                             3. Machine Learning
-                             4. Data Visualization',
+                'course_content' => '1. Introduction to Data Science\r\n2. Data Analysis\r\n3. Machine Learning\r\n4. Data Visualization',
                 'desc' => 'Learn data analysis, machine learning, and data visualization.',
                 'price' => 20000,
                 'tags' => 'Data Science, Machine Learning, Analytics',
@@ -61,10 +51,7 @@ class CourseSeeder extends Seeder
                 'name' => 'UX/UI Design Bootcamp',
                 'url_img' => NULL,
                 'what_you_will_learn' => 'UX/UI design principles, user research, UI prototyping, etc.',
-                'course_content' => '1. Introduction to UX/UI Design
-                             2. User Research
-                             3. UI Prototyping
-                             4. UI Design',
+                'course_content' => '1. Introduction to UX/UI Design\r\n2. User Research\r\n3. UI Prototyping\r\n4. UI Design',
                 'desc' => 'Focuses on user experience (UX) and user interface (UI) design principles.',
                 'price' => 180000,
                 'tags' => 'UX/UI Design, User Experience, UI Prototyping',
@@ -76,10 +63,7 @@ class CourseSeeder extends Seeder
                 'name' => 'Digital Marketing Bootcamp',
                 'url_img' => NULL,
                 'what_you_will_learn' => 'Digital marketing strategies, SEO, social media marketing, etc.',
-                'course_content' => '1. Introduction to Digital Marketing
-                             2. SEO
-                             3. Social Media Marketing
-                             4. Digital Marketing Strategies',
+                'course_content' => '1. Introduction to Digital Marketing\r\n2. SEO\r\n3. Social Media Marketing\r\n4. Digital Marketing Strategies',
                 'desc' => 'Learn digital marketing strategies, SEO, and social media marketing.',
                 'price' => 170000,
                 'tags' => 'Digital Marketing, SEO, Social Media Marketing',
@@ -91,9 +75,7 @@ class CourseSeeder extends Seeder
                 'name' => 'Cybersecurity Bootcamp',
                 'url_img' => NULL,
                 'what_you_will_learn' => 'Cybersecurity principles, ethical hacking, network security, etc.',
-                'course_content' => '1. Introduction to Cybersecurity
-                             2. Ethical Hacking
-                             3. Network Security',
+                'course_content' => '1. Introduction to Cybersecurity\r\n2. Ethical Hacking\r\n3. Network Security',
                 'desc' => 'Covers cybersecurity principles, ethical hacking, and network security.',
                 'price' => 220000,
                 'tags' => 'Cybersecurity, Ethical Hacking, Network Security',
@@ -105,9 +87,7 @@ class CourseSeeder extends Seeder
                 'name' => 'Cloud Computing Bootcamp',
                 'url_img' => NULL,
                 'what_you_will_learn' => 'Introduction to cloud technologies, AWS, cloud infrastructure, etc.',
-                'course_content' => '1. Introduction to Cloud Computing
-                             2. AWS
-                             3. Cloud Infrastructure',
+                'course_content' => '1. Introduction to Cloud Computing\r\n2. AWS\r\n3. Cloud Infrastructure',
                 'desc' => 'Introduction to cloud technologies, AWS, and cloud infrastructure.',
                 'price' => 190000,
                 'tags' => 'Cloud Computing, AWS, Cloud Infrastructure',
@@ -119,9 +99,7 @@ class CourseSeeder extends Seeder
                 'name' => 'Mobile App Development Bootcamp',
                 'url_img' => NULL,
                 'what_you_will_learn' => 'Mobile app development, iOS, Android, etc.',
-                'course_content' => '1. Introduction to Mobile App Development
-                             2. iOS
-                             3. Android',
+                'course_content' => '1. Introduction to Mobile App Development\r\n2. iOS\r\n3. Android',
                 'desc' => 'Learn to develop mobile applications for iOS and Android.',
                 'price' => 160000,
                 'tags' => 'Mobile App Development, iOS, Android',

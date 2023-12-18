@@ -40,7 +40,7 @@
                 <div class="self-stretch h-14 px-0.5 flex-col justify-start items-center gap-1 flex">
                     <button 
                     onclick="window.location.href = '/dashboard';"
-                    class="flex flex-col py-2 rounded-full justify-center items-center inline-flex hover:bg-fuchsia-100">
+                    class="flex flex-col py-2 rounded-2xl justify-center items-center inline-flex hover:bg-fuchsia-100">
                         <div class="px-4 py-1 justify-center items-center flex">
                             <div class="w-6 h-6 relative">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -54,7 +54,7 @@
                 <div class="self-stretch h-14 px-0.5 pb-1 flex-col justify-start items-center gap-1 flex">
                     <button 
                     onclick="window.location.href = '/courses';"
-                    class="flex flex-col py-2 rounded-full justify-center items-center inline-flex hover:bg-fuchsia-100">
+                    class="flex flex-col py-2 rounded-2xl justify-center items-center inline-flex hover:bg-fuchsia-100">
                         <div class="px-4 py-1 justify-center items-center flex">
                             <div class="w-6 h-6 relative">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -69,7 +69,7 @@
                 <div class="self-stretch h-14 px-0.5 pb-1 flex-col justify-start items-center gap-1 flex">
                     <button 
                     onclick="window.location.href = '/schedule';"
-                    class="flex flex-col py-2 rounded-full justify-center items-center inline-flex hover:bg-fuchsia-100">
+                    class="flex flex-col py-2 rounded-2xl justify-center items-center inline-flex hover:bg-fuchsia-100">
                         <div class="px-4 py-1 justify-center items-center flex">
                             <div class="w-6 h-6 relative">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -86,7 +86,7 @@
         <div class="pt-11 pb-14 flex-col justify-start items-center gap-10 flex">
             <div class="h-32 flex-col justify-center items-center gap-3 flex">
                 <div class="self-stretch h-14 px-0.5 pb-1 flex-col justify-start items-center gap-1 flex">
-                    <button class="flex flex-col py-2 rounded-full justify-center items-center inline-flex hover:bg-fuchsia-100">
+                    <button class="flex flex-col py-2 rounded-2xl justify-center items-center inline-flex hover:bg-fuchsia-100">
                         <div class="px-4 py-1 justify-center items-center inline-flex">
                             <div class="w-6 h-6 relative">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -100,7 +100,7 @@
                 <div class="self-stretch h-14 px-0.5 pb-1 flex-col justify-start items-center gap-1 flex">
                     <button 
                     onclick="window.location.href = '/logout';"
-                    class="flex flex-col py-2 rounded-full justify-center items-center inline-flex hover:bg-fuchsia-100">
+                    class="flex flex-col py-2 rounded-2xl justify-center items-center inline-flex hover:bg-fuchsia-100">
                         <div class="px-4 py-1 justify-center items-center inline-flex">
                             <div class="w-6 h-6 relative">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">

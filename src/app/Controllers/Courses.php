@@ -3,6 +3,7 @@
 namespace App\Controllers;
 use App\Models\CoursesModel;
 use App\Models\ScheduleModel;
+use CodeIgniter\CLI\Console;
 
 class Courses extends BaseController
 {
@@ -45,13 +46,18 @@ class Courses extends BaseController
         $desc = $this->request->getPost('desc');
         $image = $this->request->getFile('userfile');
 
-        $newName = $image->getRandomName();
-        $image->move('./uploads', $newName);
+        // Checking if there is an image
+        if (!$image->isValid()) {
+            // if its not valid, save with url_img = null
+            $img_url = null;
+        } else {
+            // if its valid, save the image
+            $img_url = $image->getRandomName();
+            $image->move('./uploads', $img_url);
 
-
-
-        // Construct the image URL
-        $img_url = base_url('uploads/' . $newName);
+            // Construct the image URL
+            $img_url = base_url('uploads/' . $img_url);
+        }
         
         $data = [
             'provider_id' => $user_id,
@@ -103,10 +109,13 @@ class Courses extends BaseController
 
         $scheduleModel = new ScheduleModel();
         $data['course'] = $courseModel->getDataCourseById($id)[0];
-        $data['schedule'] = $scheduleModel->getCourseSchedule($id, 4);
-
+        $data['schedule'] = [
+            'day' => $scheduleModel->getCourseSchedule($id, 3),
+            'repetition' => $scheduleModel->getCourseScheduleRepetitions($id),
+        ];
 
         return view('navbar').view('courses-detail', $data).view('footer');
+        // return $this->response->setJSON($data);
     }
 
     public function edit(int $id)
@@ -147,30 +156,59 @@ class Courses extends BaseController
         $what_you_will_learn = $this->request->getPost('what_you_will_learn');
         $course_content = $this->request->getPost('course_content');
         $desc = $this->request->getPost('desc');
+
+        $data = [];
         
         // checking if the image is updated
-        if ($this->request->getFile('userfile')->getName() != '') {
+        if ($this->request->getFile('userfile')->isValid()) {
+            log_message('debug', 'There is an image');
+            // deleting the old image
+            $courseModel = new CoursesModel();
+            $old_img_url = $courseModel->getDataCourseById($id)[0]['url_img'];
+            if ($old_img_url != null) {
+                try {
+                    unlink($old_img_url);
+                } catch (\Throwable $th) {
+                    //throw $th;
+                }
+            }
+
             $image = $this->request->getFile('userfile');
             $newName = $image->getRandomName();
             $image->move('./uploads', $newName);
             // Construct the image URL
             $img_url = base_url('uploads/' . $newName);
             $data = [
+                'provider_id' => $user_id,
+                'name' => $name,
                 'url_img' => $img_url,
+                'what_you_will_learn' => $what_you_will_learn,
+                'course_content' => $course_content,
+                'desc' => $desc,
+                'price' => $price,
+                'tags' => $tags,
+                'locations' => $locations,
             ];
+        
+            // Updating course
+            $courseModel = new CoursesModel();
+            $courseModel->updateCourse($id, $data);        
         } else {
-            $data = [];
+            log_message('debug', 'There is no image');
+            $data = [
+                'provider_id' => $user_id,
+                'name' => $name,
+                'url_img'=> null,
+                'what_you_will_learn' => $what_you_will_learn,
+                'course_content' => $course_content,
+                'desc' => $desc,
+                'price' => $price,
+                'tags' => $tags,
+                'locations' => $locations,
+            ];
         }
 
-        $data = [
-            'name' => $name,
-            'what_you_will_learn' => $what_you_will_learn,
-            'course_content' => $course_content,
-            'desc' => $desc,
-            'price' => $price,
-            'tags' => $tags,
-            'locations' => $locations,
-        ];
+        log_message('debug', 'Data: ' . json_encode($data));
 
         // Updating course
         $courseModel = new CoursesModel();
@@ -211,6 +249,9 @@ class Courses extends BaseController
         if ($course['provider_id'] != $session->get('id')) {
             return redirect()->to('/courses');
         }
+
+        // loggin the deletion
+        log_message('debug', 'Course deleted: ' . $course['name']);
 
         $courseModel->deleteCourse($id);
         return redirect()->to('/courses');

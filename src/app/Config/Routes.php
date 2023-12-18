@@ -16,9 +16,6 @@ $routes->post('/register', 'Register::register');
 $routes->get('/logout', 'Login::logout');
 
 $routes->get('/dashboard', 'Dashboard::index');
-$routes->get('/dashboardReview', 'DashboardReview::index');
-
-$routes->get('/coursesReview', 'CoursesReview::index');
 
 $routes->get('/courses', 'Courses::index');
 $routes->get('/courses/new', 'Courses::new');
@@ -27,6 +24,8 @@ $routes->get('/courses/(:num)', 'Courses::detail/$1');
 $routes->get('/courses/(:num)/edit', 'Courses::edit/$1');
 $routes->post('/courses/(:num)/edit', 'Courses::update/$1');
 $routes->get('/courses/(:num)/delete', 'Courses::delete/$1');
+
+$routes->get('/courses/(:num)/review', 'DashboardReview::index/$1');
 
 $routes->get('/schedule', function() {
     return redirect()->to(base_url('schedule/3'));

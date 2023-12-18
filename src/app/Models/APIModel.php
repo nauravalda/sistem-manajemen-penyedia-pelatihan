@@ -66,4 +66,24 @@ class APIModel extends Model
 
         return $result;
     }
+
+    public function searchDataCourse($searchQuery, $courseList)
+    {
+        // searching by name ignoring case
+        log_message('info', 'Search query: [' . $searchQuery . '] in ' . $courseList);
+
+
+        // if the course list is empty, search in all courses
+        if ($courseList == 'none') {
+            log_message('info', 'Searching in all courses');
+            $result = $this->db->table($this->viewTable)->like('LOWER(name)', strtolower($searchQuery), 'both')->get()->getResultArray();
+
+            // return $this->db->table($this->viewTable)->get()->getResultArray();
+        } else {
+            log_message('info', 'Searching in selected courses');
+            // converting into list of course id
+            $courseList = explode(',', $courseList);
+            $result = $this->db->table($this->viewTable)->like('LOWER(name)', strtolower($searchQuery), 'both')->whereIn('id', $courseList)->get()->getResultArray();
+        }
+    }
 }

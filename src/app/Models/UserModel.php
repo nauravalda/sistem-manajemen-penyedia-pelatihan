@@ -40,6 +40,9 @@ class UserModel extends Model
 
     public function getUserByToken($token)
     {
+        if ($token == null || $token == '') {
+            return false;
+        }
         return $this->where(['api_token' => $token])->first();
     }
 }

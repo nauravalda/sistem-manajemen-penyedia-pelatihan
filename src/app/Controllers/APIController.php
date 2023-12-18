@@ -32,8 +32,11 @@ class APIController extends BaseController
 
     }
 
-    public function courses($apiKey)
+    public function courses()
     {
+        $request = service('request');
+        $apiKey = $request->getVar('apiKey');
+
         $user = new UserModel();
         $user = $user->getUserByToken($apiKey);
         if ($user) {
@@ -56,8 +59,45 @@ class APIController extends BaseController
         }
     }
 
-    public function course($id, $apiKey)
+    public function search_courses()
     {
+        $request = service('request');
+        $searchQuery = $request->getVar('q');
+        $courseList = $request->getVar('courses');
+        $apiKey = $request->getVar('apiKey');
+
+        log_message('info', 'Search query: ' . $searchQuery);
+        log_message('info', 'Course list: ' . $courseList);
+        log_message('info', 'API Key: ' . $apiKey);
+
+        $user = new UserModel();
+        $user = $user->getUserByToken($apiKey);
+        if ($user) {
+            $model = new APIModel();
+            $data = [
+                'message' => 'success',
+                'data' => [
+                    'courses' => $model->searchDataCourse($searchQuery, $courseList)
+                ]
+                ];
+            return $this->response->setJSON($data);
+        } else {
+            $data = [
+                'message' => 'failed',
+                'data' => [
+                    'courses' => []
+                ]
+                ];
+            return $this->response->setJSON($data);
+        }
+    }
+
+    public function course()
+    {
+        $request = service('request');
+        $id = $request->getVar('id');
+        $apiKey = $request->getVar('apiKey');
+
         $user = new UserModel();
         $user = $user->getUserByToken($apiKey);
         if (!$user) {
@@ -69,7 +109,7 @@ class APIController extends BaseController
                 ];
             return $this->response->setJSON($data);
         } else {
-            $parameterArray = explode('&', $id);
+            $parameterArray = explode(',', $id);
             $model = new APIModel();
             $data = [
                 'message' => 'success',
@@ -81,8 +121,12 @@ class APIController extends BaseController
         }
     }
 
-    public function schedule($id, $apiKey)
+    public function schedule()
     {
+        $request = service('request');
+        $id = $request->getVar('id');
+        $apiKey = $request->getVar('apiKey');
+
         $user = new UserModel();
         $user = $user->getUserByToken($apiKey);
         if (!$user) {
@@ -94,7 +138,7 @@ class APIController extends BaseController
                 ];
             return $this->response->setJSON($data);
         } else {
-            $parameterArray = explode('&', $id);
+            $parameterArray = explode(',', $id);
             $model = new APIModel();
             $data = [
                 'message' => 'success',
@@ -106,8 +150,12 @@ class APIController extends BaseController
         }
     }
 
-    public function schedule_day($id, $apiKey)
+    public function schedule_day()
     {
+        $request = service('request');
+        $id = $request->getVar('id');
+        $apiKey = $request->getVar('apiKey');
+
         $user = new UserModel();
         $user = $user->getUserByToken($apiKey);
         if (!$user) {

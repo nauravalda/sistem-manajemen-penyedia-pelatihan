@@ -24,7 +24,7 @@ class ScheduleModel extends Model
     public function getProviderSchedule($id, $num_day)
     {
         $today = date('Y-m-d');
-        $query = $this->db->query("SELECT DATE_FORMAT(datetime, '%d %M %Y') AS date, DATE_FORMAT(datetime, '%H:%i') AS time, name, locations FROM schedule JOIN course ON schedule.course_id = course.id WHERE provider_id = $id AND datetime >= '$today' GROUP BY datetime LIMIT $num_day");
+        $query = $this->db->query("SELECT DATE_FORMAT(datetime, '%d %M %Y') AS date, DATE_FORMAT(datetime, '%H:%i') AS time, name, locations FROM schedule JOIN course ON schedule.course_id = course.id WHERE provider_id = $id AND datetime >= '$today' GROUP BY datetime IRDER BY datetime LIMIT $num_day");
         return $query->getResultArray();
     }
 

@@ -143,12 +143,11 @@ class APIController extends BaseController
                 ];
             return $this->response->setJSON($data);
         } else {
-            $parameterArray = explode(',', $id);
             $model = new APIModel();
             $data = [
                 'message' => 'success',
                 'data' => [
-                    'schedule' => $model->getDataScheduleByCourseId($parameterArray, $day)
+                    'schedule' => $model->getDataScheduleByCourseId($id, $day)
                 ]
                 ];
             return $this->response->setJSON($data);

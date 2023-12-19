@@ -81,12 +81,31 @@ class Dashboard extends BaseController
             $ratings[] = $res5['average_rating_courses']['AVG(rating)'];
 
         }
+
+        if (empty($ratings)) {
+            $ratings = [0];
+        }
         $idxmaxRating = array_keys($ratings, max($ratings));
+
 
         
         
 
         $model = new ScheduleModel();
+
+        // checking if user has no course
+        if (empty($array_course)) {
+            $data['user'] = $session->get('name');
+            $data['schedule'] = $model->getProviderSchedule($session->get('id'), 3);
+            $data['course'] = $courseModel->getDataCourseByProviderId($session->get('id'));
+            $data['total_participants'] = 0;
+            $data['total_participants_this_month'] = 0;
+            $data['participants_per_course'] = 0;
+            $data['rating_all'] = 0;
+            $data['rating_per_course'] = 0;
+            $data['idx_max_rating'] = 0;
+            return view('navbar').view('dashboard', $data).view('footer');
+        }
         
         $data['user'] = $session->get('name');
         $data['schedule'] = $model->getProviderSchedule($session->get('id'), 3);

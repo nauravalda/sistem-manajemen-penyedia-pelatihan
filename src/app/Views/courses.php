@@ -11,7 +11,7 @@
           <?php if (!empty($course) && is_array($course)): ?>
             <div class="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-24">
               <?php foreach ($course as $courseItem): ?>
-                <div class="w-full h-full bg-fuchsia-50 rounded-xl justify-start items-start inline-flex">
+                <div class="w-full h-full bg-sys-light-surface rounded-xl justify-start items-start inline-flex">
                   <div
                     class="w-full h-full rounded-xl border border-stone-300 flex-col justify-center items-center inline-flex">
                     <div class="self-stretch grow shrink basis-0 flex-col justify-start items-center inline-flex">

@@ -35,10 +35,8 @@ class APIModel extends Model
     // get schedule by list of course id
     public function getDataScheduleByCourseId($id, $num_day)
     {
-        // converting into list of course id
-        $id = explode(',', $id);
         $today = date('Y-m-d');
-        return $this->db->query("SELECT DATE_FORMAT(datetime, '%d %M %Y') AS date, DATE_FORMAT(datetime, '%H:%i') AS time, name, locations, FROM schedule JOIN course ON schedule.course_id = course.id WHERE course_id IN ($id) AND datetime >= '$today' GROUP BY date LIMIT $num_day")->getResultArray();
+        return $this->db->query("SELECT DATE_FORMAT(datetime, '%d %M %Y') AS date, DATE_FORMAT(datetime, '%H:%i') AS time, name, locations FROM schedule JOIN course ON schedule.course_id = course.id WHERE course_id IN ($id) AND datetime >= '$today' GROUP BY date ORDER BY datetime LIMIT $num_day")->getResultArray();
     }
 
     // get schedule by list 

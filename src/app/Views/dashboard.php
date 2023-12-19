@@ -39,16 +39,16 @@ $time = new DateTime('now', new DateTimeZone($timezone));
                     <div class="flex h-full"></div>
                     <div class='flex flex-col h-fit gap-2 '>
                       <div class="flex justify-between items-center gap-5">
-                        <h6 class="text-display-md font-semibold text-gray-50">43</h6>
+                        <h6 class="text-display-md font-semibold text-gray-50"><?= $total_participants_this_month ?></h6>
                         <div>
-                          <p class="text-title-md text-[#D0BCFF]">+ 32%</p>
+                          <p class="text-title-md text-[#D0BCFF]"><?= (($total_participants - $total_participants_this_month)/$total_participants)*100 ?> %</p>
                           <p class="text-title-md text-gray-50 font-semibold">New participants</p>
                         </div>
                       </div>
                       <div class="flex justify-between items-center gap-5">
-                        <h6 class="text-display-md font-semibold text-gray-50"><?= $providerparticipants; ?></h6>
+                        <h6 class="text-display-md font-semibold text-gray-50"><?= $total_participants ?></h6>
                         <div>
-                          <p class="text-title-md text-[#D0BCFF]">+ 14%</p>
+                          <p class="text-title-md text-[#D0BCFF]"></p>
                           <p class="text-title-md text-gray-50 font-semibold">Total participants</p>
                         </div>
                       </div>
@@ -61,7 +61,7 @@ $time = new DateTime('now', new DateTimeZone($timezone));
                     <div class="space-y-3">
                       <div class="flex justify-between items-center gap-5">
                         <div class="flex items-center gap-4 text-yellow-400">
-                          <h6 class="text-display-md font-semibold text-gray-900">4.5</h6>
+                          <h6 class="text-display-md font-semibold text-gray-900"><?= number_format($rating_all,2) ?></h6>
                           <div>
                             <p class="text-title-md text-gray-900"> /5</p>
                             <svg xmlns="http://www.w3.org/2000/svg" width="19" height="17" viewBox="0 0 19 17" fill="none">
@@ -77,8 +77,8 @@ $time = new DateTime('now', new DateTimeZone($timezone));
                         </div>
                       </div>
                       <div class="w-full bg-light-primary rounded-xl p-3">
-                        <p class="text-title-md font-bold text-gray-50">Course A</p>
-                        <p class="text-title-md text-gray-50"><span class="font-bold">4.9 / 5</span> (99 ratings)</p>
+                        <p class="text-title-md font-bold text-gray-50"><?= $course[$idx_max_rating]['name']?></p>
+                        <p class="text-title-md text-gray-50"><span class="font-bold"><?= number_format($rating_per_course[$idx_max_rating], 2, ',', '.');?> / 5</span> (<?= $participants_per_course[$idx_max_rating]?> participants) </p>
                       </div>
                     </div>
                   </div>
@@ -164,13 +164,13 @@ $time = new DateTime('now', new DateTimeZone($timezone));
                         <?= number_format($course[$i]['price'], 0, ',', '.'); ?>
                       </td>
                       <td class="px-6 py-4 border border-sys-light-outline-variant">
-                        belom ada
+                      <?= $participants_per_course[$i] ?>
                       </td>
                       <td class="px-6 py-4 border border-sys-light-outline-variant">
-                        blm ada
+                      <?= $participants_per_course[$i]*$course[$i]['price'] ?>
                       </td>
                       <td class="px-6 py-4 border border-sys-light-outline-variant">
-                        blm ada
+                        <?= number_format($rating_per_course[$i], 2, ',', '.'); ?>
                       </td>
                       <td class="px-6 border border-sys-light-outline-variant">
                         <a class="rounded-full py-2 bg-light-primary text-white text-body-md px-4" href="/courses/<?= $course[$i]['id'] ?>/review">See Review</a>

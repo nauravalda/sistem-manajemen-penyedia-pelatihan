@@ -105,7 +105,46 @@ class Courses extends BaseController
         if ($course['provider_id'] != $session->get('id')) {
             return redirect()->to('/courses');
         }
+        $apiUrl = getenv('API_URL');
+        $apiKey = getenv('API_KEY');
+        $url5 = $apiUrl . '/averagecoursesrating/?apiKey=' . $apiKey . '&courses=' . '(' . $id . ')';
+        $curl5 = curl_init($url5);
+        curl_setopt($curl5, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl5, CURLOPT_HTTPHEADER, [
+            'Content-Type: application/json'
+        ]);
+        $response5 = curl_exec($curl5);
+        curl_close($curl5);
+        $res5 = json_decode($response5, true);
+        $data['rating'] = $res5['average_rating_courses']['AVG(rating)'];
 
+        $url1 = $apiUrl . '/totalparticipant/?apiKey=' . $apiKey . '&courses=' . '(' . $id . ')';
+        $curl1 = curl_init($url1);
+        curl_setopt($curl1, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl1, CURLOPT_HTTPHEADER, [
+            'Content-Type: application/json'
+        ]);
+        $response1 = curl_exec($curl1);
+        curl_close($curl1);
+        $res1 = json_decode($response1, true);
+        $data['total_participants'] = $res1['total_participants']['total_participants'];
+        
+        $url2 = $apiUrl . 'review/' . $id . '?apiKey=' . $apiKey ;
+        $curl2 = curl_init($url2);
+        curl_setopt($curl2, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl2, CURLOPT_HTTPHEADER, [
+            'Content-Type: application/json'
+        ]);
+        $response2 = curl_exec($curl2);
+        curl_close($curl2);
+        $res2 = json_decode($response2, true);
+        if ($res2['course_review'] == null) {
+            $data['featuredReview']['name'] = 'No review yet';
+            $data['featuredReview']['rating'] = 0;
+            $data['featuredReview']['content'] = 'No review yet';
+        } else {
+        $data['featuredReview'] = $res2['course_review'][0];
+        }
 
         $scheduleModel = new ScheduleModel();
         $data['course'] = $courseModel->getDataCourseById($id)[0];
@@ -113,6 +152,8 @@ class Courses extends BaseController
             'day' => $scheduleModel->getCourseSchedule($id, 3),
             'repetition' => $scheduleModel->getCourseScheduleRepetitions($id),
         ];
+
+
 
         return view('navbar').view('courses-detail', $data).view('footer');
         // return $this->response->setJSON($data);

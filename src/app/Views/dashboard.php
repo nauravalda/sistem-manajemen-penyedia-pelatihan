@@ -41,7 +41,12 @@ $time = new DateTime('now', new DateTimeZone($timezone));
                       <div class="flex justify-between items-center gap-5">
                         <h6 class="text-display-md font-semibold text-gray-50"><?= $total_participants_this_month ?></h6>
                         <div>
-                          <p class="text-title-md text-[#D0BCFF]"><?= (($total_participants - $total_participants_this_month)/$total_participants)*100 ?> %</p>
+                          <p class="text-title-md text-[#D0BCFF]">
+                            <?php if ($total_participants == 0) {
+                              echo "0";
+                            } else {
+                              echo (($total_participants - $total_participants_this_month)/$total_participants)*100;
+                            } ?> %</p>
                           <p class="text-title-md text-gray-50 font-semibold">New participants</p>
                         </div>
                       </div>
@@ -77,8 +82,8 @@ $time = new DateTime('now', new DateTimeZone($timezone));
                         </div>
                       </div>
                       <div class="w-full bg-light-primary rounded-xl p-3">
-                        <p class="text-title-md font-bold text-gray-50"><?= $course[$idx_max_rating]['name']?></p>
-                        <p class="text-title-md text-gray-50"><span class="font-bold"><?= number_format($rating_per_course[$idx_max_rating], 2, ',', '.');?> / 5</span> (<?= $participants_per_course[$idx_max_rating]?> participants) </p>
+                        <p class="text-title-md font-bold text-gray-50"><?= $course? $course[$idx_max_rating]['name']: "No course yet" ?></p>
+                        <p class="text-title-md text-gray-50"><span class="font-bold"><?= $rating_per_course? number_format($rating_per_course[$idx_max_rating], 2, ',', '.') : "0" ?> / 5</span> (<?= $participants_per_course? $participants_per_course[$idx_max_rating] : "0"?> participants) </p>
                       </div>
                     </div>
                   </div>

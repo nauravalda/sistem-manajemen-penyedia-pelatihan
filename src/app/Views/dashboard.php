@@ -46,7 +46,7 @@ $time = new DateTime('now', new DateTimeZone($timezone));
                         </div>
                       </div>
                       <div class="flex justify-between items-center gap-5">
-                        <h6 class="text-display-md font-semibold text-gray-50">$providerparticipants</h6>
+                        <h6 class="text-display-md font-semibold text-gray-50"><?= $providerparticipants; ?></h6>
                         <div>
                           <p class="text-title-md text-[#D0BCFF]">+ 14%</p>
                           <p class="text-title-md text-gray-50 font-semibold">Total participants</p>

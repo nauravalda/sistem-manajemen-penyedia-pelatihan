@@ -35,9 +35,17 @@ class APIModel extends Model
     // get schedule by list of course id
     public function getDataScheduleByCourseId($id, $num_day)
     {
+        // Convert array to string only if $id is an array
+        if (is_array($id)) {
+            $id = implode(',', $id);
+        }
+    
         $today = date('Y-m-d');
-        return $this->db->query("SELECT DATE_FORMAT(datetime, '%d %M %Y') AS date, DATE_FORMAT(datetime, '%H:%i') AS time, name, locations FROM schedule JOIN course ON schedule.course_id = course.id WHERE course_id IN ($id) AND datetime >= '$today' GROUP BY date ORDER BY datetime LIMIT $num_day")->getResultArray();
+        
+        // Use the $id variable directly in the query (after ensuring it's a string)
+        return $this->db->query("SELECT DATE_FORMAT(datetime, '%d %M %Y') AS date, DATE_FORMAT(datetime, '%H:%i') AS time, name, locations FROM schedule JOIN course ON schedule.course_id = course.id WHERE course_id IN ($id) AND datetime >= '$today' GROUP BY date LIMIT $num_day")->getResultArray();
     }
+    
 
     // get schedule by list 
     public function getCourseScheduleRepetitions($id)

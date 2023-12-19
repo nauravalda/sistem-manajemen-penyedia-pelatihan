@@ -144,12 +144,11 @@ class APIController extends BaseController
                 log_message('info', 'Failed to get schedule');
             return $this->response->setJSON($data);
         } else {
-            $parameterArray = explode(',', $id);
             $model = new APIModel();
             $data = [
                 'message' => 'success',
                 'data' => [
-                    'schedule' => $model->getDataScheduleByCourseId($parameterArray, $day)
+                    'schedule' => $model->getDataScheduleByCourseId($id, $day)
                 ]
                 ];
                 log_message('info', 'Success to get schedule');
